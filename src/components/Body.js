@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import { restaurantList } from "../config";
 import { useState } from "react";
 
+
 function filterData(searchTxt, restaurantList) {
   const filterData = restaurantList.filter((restaurant) =>
     restaurant.data.name.toLowerCase().includes(searchTxt.toLowerCase())

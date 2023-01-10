@@ -1,3 +1,114 @@
-.App {
-    color: yellow;    
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* border: none;
+  outline: none; */
+}
+
+:root {
+  --text-color-dark: hsl(202, 57%, 15%);
+  --text-color-grey: hsl(201, 23%, 34%);
+  --text-color-grey-light: hsl(203, 15%, 47%);
+  --text-color-grey-lighter: hsl(208, 21%, 88%);
+
+  --text-color-highlight: hsl(12, 30%, 42%);
+
+  --font-weight-normal: 400;
+  --font-weight-bold: 600;
+}
+
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: "Inter", sans-serif;
+}
+
+.header {
+  margin: 0 auto;
+}
+
+main {
+}
+
+/* restaurant items */
+.restaurant-list {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.card {
+  padding: 16px;
+  max-width: 280px;
+}
+
+.card .store-name-with-cuisine {
+  padding: 8px 0px;
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  color: var(--text-color-dark);
+}
+
+.card h3 {
+  font-size: 0.75rem;
+}
+
+.card h3,
+h4 {
+  color: var(--text-color-grey);
+  font-weight: var(--font-weight-normal);
+  line-height: 2;
+}
+
+.card img {
+  width: 100%;
+}
+
+.card .store-item-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  line-height: 2;
+  padding: 8px 0px 16px;
+}
+
+.card .star-rating h4 {
+  color: white;
+  background-color: #47c379;
+  padding: 0 8px 0 4px;
+  display: flex;
+  gap: 4px;
+}
+
+.card .store-item-details h4 svg {
+  position: relative;
+  top: 5px;
+}
+
+.card .store-offer h4 {
+  font-size: 0.875rem;
+  color: var(--text-color-highlight);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card .store-offer {
+  border-top: 1px solid var(--text-color-grey-lighter);
+  padding: 12px 0px;
+}
+
+.card .store-offer h4 svg {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 6px hsl(203, 15%, 90%);
 }
