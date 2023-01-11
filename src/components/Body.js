@@ -18,24 +18,27 @@ const Body = () => {
   return (
     <main>
       <div className="search-container">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Search"
-          value={searchTxt}
-          onChange={(e) => {
-            setSearchTxt(e.target.value);
-          }}
-        />
-        <button
-          className="search-btn"
-          onClick={() => {
-            const data = filterData(searchTxt, restaurantList);
-            setRestaurants(data);
-          }}
-        >
-          <MdSearch />
-        </button>
+        <form>
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search restaurant.."
+            value={searchTxt}
+            onChange={(e) => {
+              setSearchTxt(e.target.value);
+            }}
+          />
+          <button
+            className="search-btn"
+            onClick={(e) => {
+              const data = filterData(searchTxt, restaurantList);
+                setRestaurants(data);
+                e.preventDefault();
+            }}
+          >
+            <MdSearch />
+          </button>
+        </form>
       </div>
 
       <div className="restaurant-list">
