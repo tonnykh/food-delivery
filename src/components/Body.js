@@ -4,6 +4,9 @@ import { restaurantList } from "../config";
 import { useState } from "react";
 import { MdSearch } from "react-icons/md";
 
+import { TOP_CAROUSEL_IMG_CDN_URL } from "../config";
+import { topCarouselImageList } from "../config";
+
 function filterData(searchTxt, restaurantList) {
   const filterData = restaurantList.filter((restaurant) =>
     restaurant.data.name.toLowerCase().includes(searchTxt.toLowerCase())
@@ -32,13 +35,24 @@ const Body = () => {
             className="search-btn"
             onClick={(e) => {
               const data = filterData(searchTxt, restaurantList);
-                setRestaurants(data);
-                e.preventDefault();
+              setRestaurants(data);
+              e.preventDefault();
             }}
           >
             <MdSearch />
           </button>
         </form>
+      </div>
+
+      <div className="top-carousel-img">
+        {topCarouselImageList.map(({ data }) => {
+          return (
+            <img
+              key={data.bannerId}
+              src={TOP_CAROUSEL_IMG_CDN_URL + data.creativeId}
+            />
+          );
+        })}
       </div>
 
       <div className="restaurant-list">
