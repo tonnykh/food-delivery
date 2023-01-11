@@ -101,17 +101,47 @@ h1 {
   color: var(--text-color-grey-light);
 }
 
+
 /* top carousel images */
-.top-carousel-images {
-    display: flex;
-    gap: 64px;
-    overflow: auto hidden;
-    scroll-snap-type: x;
+.top-carousel-images-container img {
+  width: 260px;
+  margin-left: 12px;
+  cursor: pointer;
 }
 
-.top-carousel-images img{
-    width: 260px;
-    scroll-snap-align: start;
+.slick-prev,
+.slick-next {
+  top: 46%;
+  z-index: 1;
+}
+
+.slick-prev {
+  left: -12px;
+}
+
+.slick-next {
+  right: 32px;
+}
+
+.slick-next:before,
+.slick-prev:before {
+  content: none;
+}
+
+.slick-next svg {
+  color: white;
+  font-size: 40px;
+  background-color: #000000;
+  border-radius: 20px;
+  padding: 8px;
+}
+
+.slick-prev svg {
+  color: white;
+  font-size: 40px;
+  background-color: #000000;
+  border-radius: 20px;
+  padding: 0 4px 0 12px;
 }
 
 /* restaurant items */
