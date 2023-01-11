@@ -2,13 +2,12 @@ import React from "react";
 import RestaurantCard from "./RestaurantCard";
 import { restaurantList } from "../config";
 import { useState } from "react";
-
+import { MdSearch } from "react-icons/md";
 
 function filterData(searchTxt, restaurantList) {
   const filterData = restaurantList.filter((restaurant) =>
     restaurant.data.name.toLowerCase().includes(searchTxt.toLowerCase())
   );
-
   return filterData;
 }
 
@@ -35,7 +34,7 @@ const Body = () => {
             setRestaurants(data);
           }}
         >
-          Search
+          <MdSearch />
         </button>
       </div>
 
