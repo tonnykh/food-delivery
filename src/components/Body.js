@@ -44,7 +44,7 @@ const Body = () => {
         </form>
       </div>
 
-      <div className="top-carousel-img">
+      <div className="top-carousel-images">
         {topCarouselImageList.map(({ data }) => {
           return (
             <img

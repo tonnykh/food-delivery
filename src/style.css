@@ -101,6 +101,19 @@ h1 {
   color: var(--text-color-grey-light);
 }
 
+/* top carousel images */
+.top-carousel-images {
+    display: flex;
+    gap: 64px;
+    overflow: auto hidden;
+    scroll-snap-type: x;
+}
+
+.top-carousel-images img{
+    width: 260px;
+    scroll-snap-align: start;
+}
+
 /* restaurant items */
 .restaurant-list {
   display: flex;
