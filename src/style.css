@@ -101,15 +101,23 @@ h1 {
 }
 
 /* top carousel images */
-
 .top-carousel-images-container {
   background-color: var(--background-color-dark);
 }
 
 .top-carousel-images-container img {
   width: 260px;
-  margin-left: 12px;
   cursor: pointer;
+  transition: 0.5s cubic-bezier(0.39, 0.58, 0.57, 1);
+}
+
+.slick-list {
+  padding: 100px 0;
+}
+
+.top-carousel-images-container img:hover {
+  transform: scale(1.05);
+  overflow: visible;
 }
 
 .slick-slider {
@@ -127,11 +135,11 @@ h1 {
 }
 
 .slick-prev {
-  left: -12px;
+  left: -32px;
 }
 
 .slick-next {
-  right: 24px;
+  right: 32px;
 }
 
 .slick-next:before,
@@ -147,12 +155,25 @@ h1 {
   padding: 12px;
 }
 
+.slick-next path,
+.slick-prev svg {
+  transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slick-next svg:hover path {
+  transform: translateX(24%);
+}
+
 .slick-prev svg {
   color: var(--text-color-grey);
   font-size: 48px;
   background-color: white;
   border-radius: 30px;
   padding: 0 8px 0 16px;
+}
+
+.slick-prev svg:hover {
+    padding: 0 16px 0 8px;
 }
 
 /* Filter container */
@@ -222,8 +243,7 @@ h1 {
   font-size: 0.75rem;
   margin-top: 4px;
   color: var(--text-color-grey-light);
-    font-weight: var(--font-weight-normal);
-
+  font-weight: var(--font-weight-normal);
 }
 
 .card h4 {
