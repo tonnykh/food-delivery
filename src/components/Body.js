@@ -10,7 +10,11 @@ import { topCarouselImageList } from "../config";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+import {
+  MdArrowBackIos,
+  MdArrowForwardIos,
+  MdOutlineFilterAlt,
+} from "react-icons/md";
 
 function filterData(searchTxt, restaurantList) {
   const filterData = restaurantList.filter((restaurant) =>
@@ -95,6 +99,21 @@ const Body = () => {
             );
           })}
         </Slider>
+      </div>
+
+      <div className="filter-container">
+        <h4>All restaurants</h4>
+        <div className="filter-category">
+          <p>Relevance</p>
+          <p>Delivery Time</p>
+          <p>Rating</p>
+          <p>Cost: Low to High</p>
+          <p>Cost: High to Low</p>
+          <div className="filter-sub-category">
+            <p>Filters</p>
+            <MdOutlineFilterAlt />
+          </div>
+        </div>
       </div>
 
       <div className="restaurant-list">

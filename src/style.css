@@ -19,29 +19,29 @@
   --font-weight-normal: 400;
   --font-weight-bold: 600;
 
-  --background-color-light: #f7f7f7;
+  --background-color-light: hsl(0, 0%, 97%);
+  --background-color-dark: hsl(202, 57%, 15%);
 
   --border-radius: 20px;
 }
 
 body {
-  max-width: 1250px;
+  /* max-width: 1250px; */
   margin: 0 auto;
   font-family: "Inter", sans-serif;
 }
 
 /* HEADER */
 header {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   height: 80px;
   align-items: center;
-  margin: 0 16px;
-  /* border: 2px solid red; */
 }
 
 h1 {
-  /* border: 2px solid red; */
   color: var(--text-color-dark);
   font-size: 1.875rem;
 }
@@ -50,7 +50,6 @@ h1 {
   display: flex;
   gap: 64px;
   list-style: none;
-  /* border: 2px solid red; */
   font-size: 0.875rem;
   color: var(--text-color-dark);
   font-weight: bold;
@@ -101,12 +100,24 @@ h1 {
   color: var(--text-color-grey-light);
 }
 
-
 /* top carousel images */
+
+.top-carousel-images-container {
+  background-color: var(--background-color-dark);
+}
+
 .top-carousel-images-container img {
   width: 260px;
   margin-left: 12px;
   cursor: pointer;
+}
+
+.slick-slider {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 340px;
+  display: flex;
+  align-items: center;
 }
 
 .slick-prev,
@@ -120,7 +131,7 @@ h1 {
 }
 
 .slick-next {
-  right: 32px;
+  right: 24px;
 }
 
 .slick-next:before,
@@ -129,19 +140,58 @@ h1 {
 }
 
 .slick-next svg {
-  color: white;
-  font-size: 40px;
-  background-color: #000000;
-  border-radius: 20px;
-  padding: 8px;
+  color: var(--text-color-grey);
+  font-size: 48px;
+  background-color: white;
+  border-radius: 30px;
+  padding: 12px;
 }
 
 .slick-prev svg {
-  color: white;
-  font-size: 40px;
-  background-color: #000000;
-  border-radius: 20px;
-  padding: 0 4px 0 12px;
+  color: var(--text-color-grey);
+  font-size: 48px;
+  background-color: white;
+  border-radius: 30px;
+  padding: 0 8px 0 16px;
+}
+
+/* Filter container */
+.filter-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--text-color-grey-lighter);
+}
+
+.filter-container h4 {
+  color: var(--text-color-dark);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.filter-category p {
+  font-size: 1rem;
+  color: var(--text-color-grey-light);
+}
+
+.filter-category {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.filter-sub-category {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.filter-sub-category svg {
+  /* color: #207b90; */
+  font-size: 30px;
 }
 
 /* restaurant items */
@@ -149,6 +199,9 @@ h1 {
   display: flex;
   gap: 32px;
   flex-wrap: wrap;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding-top: 32px;
 }
 
 .card {
@@ -167,10 +220,13 @@ h1 {
 
 .card h3 {
   font-size: 0.75rem;
+  margin-top: 4px;
+  color: var(--text-color-grey-light);
+    font-weight: var(--font-weight-normal);
+
 }
 
-.card h3,
-h4 {
+.card h4 {
   color: var(--text-color-grey);
   font-weight: var(--font-weight-normal);
   line-height: 2;
