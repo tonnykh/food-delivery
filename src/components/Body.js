@@ -102,7 +102,6 @@ const Body = () => {
       </div>
 
       <div className="filter-container">
-        <h4>All restaurants</h4>
         <div className="filter-category">
           <p>Relevance</p>
           <p>Delivery Time</p>

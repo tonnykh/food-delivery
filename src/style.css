@@ -26,13 +26,22 @@
 }
 
 body {
-  /* max-width: 1250px; */
   margin: 0 auto;
   font-family: "Inter", sans-serif;
 }
 
+
 /* HEADER */
 header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 1px solid var(--text-color-grey-lighter);
+  backdrop-filter: saturate(180%) blur(5px);
+  background-color: hsl(0deg 0% 100% / 95%);
+}
+
+.header-container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -65,24 +74,32 @@ h1 {
   font-size: 1.125rem;
 }
 
+
 /* BODY */
 /* search */
 .search-container {
-  max-width: 450px;
-  margin: 0px auto 16px;
+  background-color: white;
+  position: sticky;
+  top: 80px;
+  z-index: 2;
 }
 
 .search-container form {
+  position: absolute;
+  top: -59px;
+  left: 27%;
   display: flex;
 }
 
 .search-container input {
-  width: 80%;
+  width: 384px;
   font-size: 0.875rem;
   padding: 12px 24px;
   background-color: var(--background-color-light);
   border-radius: var(--border-radius);
   font-family: "Inter", sans-serif;
+  backdrop-filter: saturate(180%) blur(5px);
+  background-color: hsla(203, 58%, 15%, 0.051);
 }
 
 .search-container input::placeholder {
@@ -112,7 +129,7 @@ h1 {
 }
 
 .slick-list {
-  padding: 100px 0;
+  padding: 32x 0;
 }
 
 .top-carousel-images-container img:hover {
@@ -173,18 +190,20 @@ h1 {
 }
 
 .slick-prev svg:hover {
-    padding: 0 16px 0 8px;
+  padding: 0 16px 0 8px;
 }
 
 /* Filter container */
 .filter-container {
-  max-width: 1200px;
-  margin: 0 auto;
   height: 72px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--text-color-grey-lighter);
+  position: sticky;
+  top: 80px;
+  box-shadow: 0 3px 6px rgb(28 28 28 / 10%);
+  backdrop-filter: saturate(180%) blur(5px);
+  background-color: hsl(0deg 0% 100% / 95%);
 }
 
 .filter-container h4 {
@@ -193,15 +212,17 @@ h1 {
   font-weight: var(--font-weight-bold);
 }
 
-.filter-category p {
-  font-size: 1rem;
-  color: var(--text-color-grey-light);
-}
-
 .filter-category {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 48px;
+}
+
+.filter-category p {
+  font-size: 1rem;
+  color: var(--text-color-grey-light);
 }
 
 .filter-sub-category {
