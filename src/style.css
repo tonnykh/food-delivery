@@ -30,7 +30,6 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-
 /* HEADER */
 header {
   position: sticky;
@@ -61,7 +60,7 @@ h1 {
   list-style: none;
   font-size: 0.875rem;
   color: var(--text-color-dark);
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .navbar li {
@@ -71,9 +70,8 @@ h1 {
 }
 
 .navbar li svg {
-  font-size: 1.125rem;
+  font-size: 1.5rem;
 }
-
 
 /* BODY */
 /* search */
@@ -87,12 +85,12 @@ h1 {
 .search-container form {
   position: absolute;
   top: -59px;
-  left: 27%;
+  left: 30%;
   display: flex;
 }
 
 .search-container input {
-  width: 384px;
+  width: 284px;
   font-size: 0.875rem;
   padding: 12px 24px;
   background-color: var(--background-color-light);
@@ -118,21 +116,21 @@ h1 {
 }
 
 /* top carousel images */
-.top-carousel-images-container {
+.top-images-carousel-container {
   background-color: var(--background-color-dark);
 }
 
-.top-carousel-images-container img {
+.top-images-carousel-container img {
   width: 260px;
   cursor: pointer;
   transition: 0.5s cubic-bezier(0.39, 0.58, 0.57, 1);
 }
 
 .slick-list {
-  padding: 32x 0;
+  padding: 32px 0;
 }
 
-.top-carousel-images-container img:hover {
+.top-images-carousel-container img:hover {
   transform: scale(1.05);
   overflow: visible;
 }
@@ -206,12 +204,6 @@ h1 {
   background-color: hsl(0deg 0% 100% / 95%);
 }
 
-.filter-container h4 {
-  color: var(--text-color-dark);
-  font-size: 1.5rem;
-  font-weight: var(--font-weight-bold);
-}
-
 .filter-category {
   max-width: 1200px;
   margin: 0 auto;
@@ -221,7 +213,7 @@ h1 {
 }
 
 .filter-category p {
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: var(--text-color-grey-light);
 }
 
