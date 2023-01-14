@@ -25,7 +25,7 @@ const RestaurantCard = ({
 
       <div className="store-item-details">
         <div className="star-rating">
-          <h4>
+          <h4 className={avgRating > 4 ? "green" : "orange"}>
             <IoIosStar />
             {avgRating}
           </h4>

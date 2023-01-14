@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { restaurantList } from "../config";
 import TopImagesCarousel from "./TopImagesCarousel";
@@ -14,6 +14,21 @@ function filterData(searchTxt, restaurantList) {
 const Body = () => {
   const [searchTxt, setSearchTxt] = useState("");
   const [restaurants, setRestaurants] = useState(restaurantList);
+
+  useEffect(() => {
+    const data = getData();
+    console.log(data);
+
+  });
+
+  async function getData() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&sortBy=RELEVANCE&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    const restaurantListAll = json.data.cards[2].data.data.cards;
+    return restaurantListAll;
+  }
 
   return (
     <main>
