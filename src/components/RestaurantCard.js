@@ -16,7 +16,9 @@ const RestaurantCard = ({
 
   return (
     <div className="card">
-      <img src={IMG_CDN_URL + cloudinaryImageId} />
+      {/* <img className="skeleton" /> */}
+
+      <img src={IMG_CDN_URL + cloudinaryImageId} className="skeleton" />
 
       <div className="store-name-with-cuisine">
         <h2>{name}</h2>

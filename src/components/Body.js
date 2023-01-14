@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import TopImagesCarousel from "./TopImagesCarousel";
 import { MdSearch, MdOutlineFilterAlt } from "react-icons/md";
+import SchimmerRestaurantCard from "./SchimmerRestaurantCard";
 
 function filterData(searchTxt, restaurants) {
   const filterData = restaurants.filter((restaurant) =>
@@ -70,14 +71,20 @@ const Body = () => {
       </div>
 
       <div className="restaurant-list">
-        {(filteredRestaurants.length > 0
-          ? filteredRestaurants
-          : allRestaurants
-        ).map((restaurant) => {
-          return (
-            <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
-          );
-        })}
+        {allRestaurants &&
+          (filteredRestaurants.length > 0
+            ? filteredRestaurants
+            : allRestaurants
+          ).map((restaurant) => {
+            return (
+              <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+            );
+          })}
+
+        {allRestaurants == false &&
+          [1, 2, 3, 4, 5, 6, 7, 8].map((n) => {
+            return <SchimmerRestaurantCard key={n} />;
+          })}
       </div>
     </main>
   );
