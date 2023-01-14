@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-import { restaurantList } from "../config";
 import TopImagesCarousel from "./TopImagesCarousel";
 import { MdSearch, MdOutlineFilterAlt } from "react-icons/md";
 
-function filterData(searchTxt, restaurantList) {
-  const filterData = restaurantList.filter((restaurant) =>
+function filterData(searchTxt, restaurants) {
+  const filterData = restaurants.filter((restaurant) =>
     restaurant.data.name.toLowerCase().includes(searchTxt.toLowerCase())
   );
   return filterData;
@@ -13,21 +12,19 @@ function filterData(searchTxt, restaurantList) {
 
 const Body = () => {
   const [searchTxt, setSearchTxt] = useState("");
-  const [restaurants, setRestaurants] = useState(restaurantList);
+  const [allRestaurants, setAllRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   useEffect(() => {
-    const data = getData();
-    console.log(data);
+    getRestaurants();
+  }, []);
 
-  });
-
-  async function getData() {
+  async function getRestaurants() {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&sortBy=RELEVANCE&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    const restaurantListAll = json.data.cards[2].data.data.cards;
-    return restaurantListAll;
+    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   }
 
   return (
@@ -46,8 +43,8 @@ const Body = () => {
           <button
             className="search-btn"
             onClick={(e) => {
-              const data = filterData(searchTxt, restaurantList);
-              setRestaurants(data);
+              const data = filterData(searchTxt, allRestaurants);
+              setFilteredRestaurants(data);
               e.preventDefault();
             }}
           >
@@ -73,7 +70,10 @@ const Body = () => {
       </div>
 
       <div className="restaurant-list">
-        {restaurants.map((restaurant) => {
+        {(filteredRestaurants.length > 0
+          ? filteredRestaurants
+          : allRestaurants
+        ).map((restaurant) => {
           return (
             <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
           );
