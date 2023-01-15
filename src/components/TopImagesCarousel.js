@@ -42,11 +42,15 @@ const settings = {
   nextArrow: <NextArrow />,
 };
 
-const TopImagesCarousel = () => {
+const TopImagesCarousel = (props) => {
+
+  console.log(props.carouselData, "Carousel data");
+  console.log(topCarouselImageList, "hard");
+
   return (
     <div className="top-images-carousel-container">
       <Slider {...settings}>
-        {topCarouselImageList.map(({ data }) => {
+        {props.carouselData.map(({ data }) => {
           return (
             <div key={data.bannerId}>
               <img src={TOP_CAROUSEL_IMG_CDN_URL + data.creativeId} />

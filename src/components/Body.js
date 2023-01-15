@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import TopImagesCarousel from "./TopImagesCarousel";
 import { MdSearch, MdOutlineFilterAlt } from "react-icons/md";
-import SchimmerRestaurantCard from "./SchimmerRestaurantCard";
+import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
 
 function filterData(searchTxt, restaurants) {
   const filterData = restaurants.filter((restaurant) =>
@@ -16,6 +16,10 @@ const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
+  const [carouselData, setCarouselData] = useState("");
+
+  console.log(carouselData, "CAROUSEL BODY");
+
   useEffect(() => {
     getRestaurants();
   }, []);
@@ -26,6 +30,7 @@ const Body = () => {
     );
     const json = await data.json();
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setCarouselData(json?.data?.cards[0]?.data?.data?.cards);
   }
 
   return (
@@ -54,7 +59,15 @@ const Body = () => {
         </form>
       </div>
 
-      <TopImagesCarousel />
+      {carouselData ? (
+        <TopImagesCarousel carouselData={carouselData} />
+      ) : (
+        <div className="shimmer-carousel-container">
+          {[...Array(4).keys()].map((n) => {
+            return <img className="shimmer shimmer-carousel" key={n}></img>;
+          })}
+        </div>
+      )}
 
       <div className="filter-container">
         <div className="filter-category">
@@ -80,10 +93,9 @@ const Body = () => {
               <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
             );
           })}
-
         {allRestaurants == false &&
-          [1, 2, 3, 4, 5, 6, 7, 8].map((n) => {
-            return <SchimmerRestaurantCard key={n} />;
+          [...Array(8).keys()].map((n) => {
+            return <ShimmerRestaurantCard key={n} />;
           })}
       </div>
     </main>
