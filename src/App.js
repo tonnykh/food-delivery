@@ -6,14 +6,15 @@ import Footer from "./components/Footer";
 import "./style.css";
 import Offers from "./components/Offers";
 import Error from "./components/Error";
+import RestaurantMenu from "./components/RestaurantMenu";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 const App = () => {
   return (
     <>
       <Header />
-      <Body />
+      <Outlet />
       <Footer />
     </>
   );
@@ -24,10 +25,20 @@ const appRouter = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <Error />,
-  },
-  {
-    path: "/offers",
-    element: <Offers />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/offers",
+        element: <Offers />,
+      },
+      {
+        path: "/restaurant/:restid",
+        element: <RestaurantMenu />,
+      },
+    ],
   },
 ]);
 

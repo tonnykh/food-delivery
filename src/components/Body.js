@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import TopImagesCarousel from "./TopImagesCarousel";
 import { MdSearch, MdOutlineFilterAlt } from "react-icons/md";
 import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
+import { Link } from "react-router-dom";
 
 function filterData(searchTxt, restaurants) {
   const filterData = restaurants.filter((restaurant) =>
@@ -90,7 +91,12 @@ const Body = () => {
             : allRestaurants
           ).map((restaurant) => {
             return (
-              <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+              <Link
+                to={"/restaurant/" + restaurant.data.id}
+                key={restaurant.data.id}
+              >
+                <RestaurantCard {...restaurant.data} />
+              </Link>
             );
           })}
         {allRestaurants == false &&
