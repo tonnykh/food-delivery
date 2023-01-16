@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   MdOutlineLocalOffer,
   MdHelpOutline,
@@ -9,19 +10,6 @@ import {
 const Title = () => <h1>Food Villa</h1>;
 
 const Header = () => {
-  //   const [lat, setLat] = useState();
-  //   const [lng, setLng] = useState();
-  //   const [status, setStatus] = useState();
-  //   const [userAddresses, setUserAddresses] = useState();
-
-  //   useEffect(() => {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       console.log(position);
-  //       setLat(position.coords.latitude);
-  //       setLng(position.coords.longitude);
-  //     });
-  //   });
-
   return (
     <header className="header">
       <div className="header-container">
@@ -29,8 +17,10 @@ const Header = () => {
 
         <ul className="navbar">
           <li>
-            <MdOutlineLocalOffer />
-            Offers
+            <Link to="/offers">
+              <MdOutlineLocalOffer />
+              Offers
+            </Link>
           </li>
           <li>
             <MdHelpOutline />
