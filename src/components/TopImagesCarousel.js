@@ -44,9 +44,6 @@ const settings = {
 
 const TopImagesCarousel = (props) => {
 
-  console.log(props.carouselData, "Carousel data");
-  console.log(topCarouselImageList, "hard");
-
   return (
     <div className="top-images-carousel-container">
       <Slider {...settings}>

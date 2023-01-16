@@ -19,7 +19,7 @@ const Body = () => {
 
   const [carouselData, setCarouselData] = useState("");
 
-  console.log(carouselData, "CAROUSEL BODY");
+
 
   useEffect(() => {
     getRestaurants();

@@ -9,7 +9,15 @@ import {
 
 const Title = () => <h1>Food Villa</h1>;
 
+const loggedInUser = () => {
+  return false;
+};
+
+console.log(loggedInUser());
+
 const Header = () => {
+    const [isLogin, setIsLogin] = useState(false);
+
   return (
     <header className="header">
       <div className="header-container">
@@ -33,6 +41,9 @@ const Header = () => {
           <li>
             <MdOutlineShoppingCart />
             Cart
+          </li>
+          <li>
+            <button onClick={() => setIsLogin(!isLogin)}>{isLogin ? "Logout" : "Login"}</button>
           </li>
         </ul>
       </div>
