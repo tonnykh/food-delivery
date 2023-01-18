@@ -9,14 +9,14 @@ import {
 
 const Title = () => <h1>Food Villa</h1>;
 
-const loggedInUser = () => {
-  return false;
-};
-
-console.log(loggedInUser());
-
 const Header = () => {
-    const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+
+  const handleClick = () => {
+    localStorage.clear();
+    window.location.reload();
+    setIsLogin(!isLogin);
+  };
 
   return (
     <header className="header">
@@ -43,7 +43,9 @@ const Header = () => {
             Cart
           </li>
           <li>
-            <button onClick={() => setIsLogin(!isLogin)}>{isLogin ? "Logout" : "Login"}</button>
+            <button onClick={handleClick}>
+              {isLogin ? "Logout" : "Login"}
+            </button>
           </li>
         </ul>
       </div>

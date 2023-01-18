@@ -5,7 +5,7 @@ import { IMG_CDN_URL } from "../config";
 const RestaurantMenu = () => {
   const { restid } = useParams();
 
-  const [restaurant, setRestaurant] = useState(null);
+    const [restaurant, setRestaurant] = useState([]);
 
   console.log(restid);
 
@@ -20,10 +20,9 @@ const RestaurantMenu = () => {
     );
     const json = await data.json();
     console.log(json);
-    setRestaurant(json?.data);
+      setRestaurant(json?.data);
   }
-  console.log(restaurant, "CONSOLE");
-
+    
   return (
     <div className="menu">
       <div>
