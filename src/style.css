@@ -6,6 +6,7 @@
   box-sizing: border-box;
   border: none;
   outline: none;
+  text-decoration: none;
 }
 
 :root {
@@ -285,7 +286,6 @@ h1 {
 }
 
 .card h4 {
-  color: var(--text-color-grey);
   font-weight: var(--font-weight-normal);
   line-height: 2;
 }
@@ -314,6 +314,7 @@ h1 {
   font-size: 0.75rem;
   line-height: 2;
   padding: 8px 0px 16px;
+  color: var(--text-color-grey-light)
 }
 
 .card .star-rating h4 {
