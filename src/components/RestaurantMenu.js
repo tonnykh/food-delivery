@@ -2,6 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../config";
 import { MENU_IMG_CDN_URL } from "../config";
+import {
+  MdCheckBoxOutlineBlank,
+  MdOutlineFavoriteBorder,
+  MdSearch,
+  MdLocalOffer,
+} from "react-icons/md";
+import { IoIosStar } from "react-icons/io";
 
 const RestaurantMenu = () => {
   const { restid } = useParams();
@@ -50,7 +57,10 @@ const RestaurantMenu = () => {
 
               <div className="restaurant-sub-info">
                 <div className="restaurant-sub-info-item">
-                  <div>{restaurantMenu?.avgRatingString}</div>
+                  <div>
+                    <IoIosStar />
+                    {" " + restaurantMenu?.avgRatingString}
+                  </div>
                   <p>{restaurantMenu?.totalRatingsString}</p>
                 </div>
 
@@ -68,22 +78,53 @@ const RestaurantMenu = () => {
                 </div>
               </div>
             </div>
+
+            <div className="filter-dishes">
+              <div>
+                <label for="dishes-input">
+                  <MdSearch />
+                </label>
+                <input
+                  type="text"
+                  id="dishes-input"
+                  placeholder="Search for dishes.."
+                ></input>
+              </div>
+              <div>
+                <MdCheckBoxOutlineBlank />
+                Veg Only
+              </div>
+              <div>
+                <MdOutlineFavoriteBorder />
+                Favourite
+              </div>
+            </div>
           </div>
 
           <div className="offer">
             <h3>OFFER</h3>
             <div className="offer-inner">
               <div>
-                {
-                  restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[0]
-                    ?.meta
-                }
+                <div>
+                  <MdLocalOffer />
+                </div>
+
+                  {
+                    restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[0]
+                      ?.meta
+                  }
+
               </div>
               <div>
-                {
-                  restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[1]
-                    ?.meta
-                }
+                <div>
+                  <MdLocalOffer />
+                </div>
+
+                  {
+                    restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[1]
+                      ?.meta
+                  }
+
               </div>
             </div>
           </div>
@@ -144,7 +185,13 @@ const RestaurantMenu = () => {
                               width="118"
                               height="96"
                             ></img>
-                            <button>
+                            <button
+                              className={
+                                restaurantMenu?.availability?.opened
+                                  ? "green"
+                                  : null
+                              }
+                            >
                               {restaurantMenu?.availability?.opened
                                 ? "ADD"
                                 : "Unavailable"}

@@ -25,6 +25,8 @@
 
   --border-radius: 20px;
   --border-radius-small: 6px;
+
+  --box-shadow: 0 4px 6px hsl(203deg 56% 15% / 11%);
 }
 
 body {
@@ -355,7 +357,7 @@ h1 {
 
 .card:hover {
   cursor: pointer;
-  box-shadow: 0 4px 6px hsl(203, 15%, 90%);
+  box-shadow: var(--box-shadow);
 }
 
 /* RESTAURANT MENU PAGE */
@@ -388,7 +390,7 @@ h1 {
 .restaurant-cuisines,
 .restaurant-location {
   font-size: 0.875rem;
-  color: var(--text-color-grey-lighter);
+  color: var(--text-color-grey-light);
 }
 
 .restaurant-cuisines {
@@ -409,7 +411,7 @@ h1 {
 .restaurant-sub-info p {
   font-size: 0.75rem;
   font-weight: var(--font-weight-normal);
-  color: var(--text-color-grey-lighter);
+  color: var(--text-color-grey-light);
 }
 
 .restaurant-sub-info-item:not(:first-child):not(:last-child) {
@@ -424,6 +426,36 @@ h1 {
 
 .restaurant-sub-info-item:last-child {
   padding-left: 32px;
+}
+
+.filter-dishes {
+  position: absolute;
+  display: flex;
+  gap: 24px;
+  top: 317px;
+  justify-content: center;
+}
+
+.filter-dishes div {
+  background-color: white;
+  color: var(--text-color-dark);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+  padding: 0 16px;
+  gap: 8px;
+}
+
+.filter-dishes div svg {
+  font-size: 1.25rem;
+}
+
+.filter-dishes div:first-child label {
+  display: flex;
+  align-items: center;
 }
 
 /* offer */
@@ -449,6 +481,19 @@ h1 {
 
 .offer-inner div:first-child {
   margin-bottom: 16px;
+}
+
+.offer-inner div {
+  display: flex;
+  gap: 8px;
+}
+
+.offer-inner div:first-child svg {
+  font-size: 1.5rem;
+}
+
+.offer-inner div:last-child svg {
+  font-size: 1.5rem;
 }
 
 /* menu */
@@ -539,15 +584,19 @@ h1 {
   background-color: white;
 }
 
-.menu-right-cart {
-  width: 298px;
-  color: var(--text-color-grey-light);
+.restaurant-menu-item-right .green {
+  color: green;
 }
 
 /* menu right side cart */
+.menu-right-cart {
+  width: 298px;
+  color: var(--text-color-grey-light);
+  padding: 0 12px;
+}
+
 .menu-right-cart div:first-child {
   font-size: 1.875rem;
-
   font-weight: var(--font-weight-bold);
 }
 .menu-right-cart img {
@@ -560,6 +609,5 @@ h1 {
   margin-top: 16px;
   max-width: 228px;
 }
-
 
 /* var res = num.toString().replace(/^(\d{3})(.*)/ig, '$1.$2'); */
