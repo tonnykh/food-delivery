@@ -13,7 +13,7 @@
   --text-color-dark: hsl(202, 57%, 15%);
   --text-color-grey: hsl(201, 23%, 34%);
   --text-color-grey-light: hsl(203, 15%, 47%);
-  --text-color-grey-lighter: hsl(208, 21%, 88%);
+  --text-color-grey-lighter: hsl(208, 18%, 70%);
 
   --text-color-highlight: hsl(12, 30%, 42%);
 
@@ -314,7 +314,7 @@ h1 {
   font-size: 0.75rem;
   line-height: 2;
   padding: 8px 0px 16px;
-  color: var(--text-color-grey-light)
+  color: var(--text-color-grey-light);
 }
 
 .card .star-rating h4 {
@@ -357,8 +357,10 @@ h1 {
   box-shadow: 0 4px 6px hsl(203, 15%, 90%);
 }
 
-
 /* RESTAURANT MENU PAGE */
+.restaurant-header-container {
+    background-color: var(--background-color-dark);
+}
 
 .restaurant-header {
   height: 256px;
@@ -367,25 +369,82 @@ h1 {
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-}
+  color: white;
 
-.restaurant-info h1 {
-  font-size: 1.875rem;
-  font-weight: var(--font-weight-normal);
-}
-
-.restaurant-cuisines, .restaurant-location {
-  font-size: 0.875rem;
-}
-
-.restaurant-sub-info p {
-  font-size: 0.75rem;
 }
 
 .restaurant-info {
   width: 538px;
 }
 
+.restaurant-info h1 {
+  font-size: 1.875rem;
+  font-weight: var(--font-weight-normal);
+  color: white;
+}
+
+.restaurant-cuisines,
+.restaurant-location {
+  font-size: 0.875rem;
+  color: var(--text-color-grey-lighter);
+}
+
+.restaurant-cuisines {
+  margin-top: 12px;
+}
+
+.restaurant-location {
+  margin-top: 16px;
+}
+
+.restaurant-sub-info {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  margin-top: 24px;
+}
+
+.restaurant-sub-info p {
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-normal);
+  color: var(--text-color-grey-lighter);
+}
+
+.restaurant-sub-info-item:not(:first-child):not(:last-child) {
+  padding: 0 32px;
+  border-right: 1px solid var(--text-color-grey-lighter);
+  border-left: 1px solid var(--text-color-grey-lighter);
+}
+
+.restaurant-sub-info-item:first-child {
+  padding-right: 32px;
+}
+
+.restaurant-sub-info-item:last-child {
+  padding-left: 32px;
+}
+
+/* offer */
 .offer {
   width: 298px;
+  border: 1px solid var(--text-color-grey-lighter);
+  position: relative;
+}
+
+.offer h3 {
+  position: absolute;
+  top: -12px;
+  left: -8px;
+  background-color: var(--background-color-dark);
+  padding: 0 10px 10px 0;
+  font-size: 1.25rem;
+}
+
+.offer-inner {
+  padding: 31px 40px 25px 25px;
+  font-size: 0.875rem;
+}
+
+.offer-inner div:first-child {
+  margin-bottom: 16px;
 }

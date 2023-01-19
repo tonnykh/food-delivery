@@ -27,60 +27,64 @@ const RestaurantMenu = () => {
   return (
     <div className="menu">
       {/* *** RESTAURANT HEADER *** */}
-      <div className="restaurant-header">
-        <div>
-          <img
-            src={IMG_CDN_URL + restaurantMenu?.cloudinaryImageId}
-            height="165"
-          ></img>
-        </div>
-
-        <div className="restaurant-info">
-          <h1>{restaurantMenu?.name}</h1>
-
+      <div className="restaurant-header-container">
+        <div className="restaurant-header">
           <div>
-            <div className="restaurant-cuisines">
-              {restaurantMenu?.cuisines?.join(", ")}
-            </div>
+            <img
+              src={IMG_CDN_URL + restaurantMenu?.cloudinaryImageId}
+              height="165"
+            ></img>
+          </div>
 
-            <div className="restaurant-location">
-              {restaurantMenu?.locality + ", " + restaurantMenu?.area}
-            </div>
+          <div className="restaurant-info">
+            <h1>{restaurantMenu?.name}</h1>
 
-            <div className="restaurant-sub-info">
-              <div>
-                <div>{restaurantMenu?.avgRatingString}</div>
-                <p>{restaurantMenu?.totalRatingsString}</p>
+            <div>
+              <div className="restaurant-cuisines">
+                {restaurantMenu?.cuisines?.join(", ")}
               </div>
-              <div>
-                <div>{restaurantMenu?.sla?.deliveryTime + " mins"}</div>
-                <p>Delivery Time</p>
+
+              <div className="restaurant-location">
+                {restaurantMenu?.locality + ", " + restaurantMenu?.area}
               </div>
-              <div>
-                <div>
-                  {restaurantMenu &&
-                    (restaurantMenu?.costForTwoMsg).split(" ")[0]}
+
+              <div className="restaurant-sub-info">
+                <div className="restaurant-sub-info-item">
+                  <div>{restaurantMenu?.avgRatingString}</div>
+                  <p>{restaurantMenu?.totalRatingsString}</p>
                 </div>
-                <p>Cost for two</p>
+
+                <div className="restaurant-sub-info-item">
+                  <div>{restaurantMenu?.sla?.deliveryTime + " mins"}</div>
+                  <p>Delivery Time</p>
+                </div>
+
+                <div className="restaurant-sub-info-item">
+                  <div>
+                    {restaurantMenu &&
+                      (restaurantMenu?.costForTwoMsg).split(" ")[0]}
+                  </div>
+                  <p>Cost for two</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="offer">
-          <div>OFFER</div>
-          <div>
-            <div>
-              {
-                restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[0]
-                  ?.meta
-              }
-            </div>
-            <div>
-              {
-                restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[1]
-                  ?.meta
-              }
+          <div className="offer">
+            <h3>OFFER</h3>
+            <div className="offer-inner">
+              <div>
+                {
+                  restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[0]
+                    ?.meta
+                }
+              </div>
+              <div>
+                {
+                  restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[1]
+                    ?.meta
+                }
+              </div>
             </div>
           </div>
         </div>
