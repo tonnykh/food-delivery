@@ -356,3 +356,36 @@ h1 {
   cursor: pointer;
   box-shadow: 0 4px 6px hsl(203, 15%, 90%);
 }
+
+
+/* RESTAURANT MENU PAGE */
+
+.restaurant-header {
+  height: 256px;
+  max-width: 1200px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.restaurant-info h1 {
+  font-size: 1.875rem;
+  font-weight: var(--font-weight-normal);
+}
+
+.restaurant-cuisines, .restaurant-location {
+  font-size: 0.875rem;
+}
+
+.restaurant-sub-info p {
+  font-size: 0.75rem;
+}
+
+.restaurant-info {
+  width: 538px;
+}
+
+.offer {
+  width: 298px;
+}

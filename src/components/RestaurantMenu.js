@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../config";
+import { MENU_IMG_CDN_URL } from "../config";
 
 const RestaurantMenu = () => {
   const { restid } = useParams();
 
-    const [restaurant, setRestaurant] = useState([]);
+  const [restaurantMenu, setRestaurant] = useState(null);
 
   console.log(restid);
 
@@ -20,29 +21,136 @@ const RestaurantMenu = () => {
     );
     const json = await data.json();
     console.log(json);
-      setRestaurant(json?.data);
+    setRestaurant(json?.data);
   }
-    
+
   return (
     <div className="menu">
-      <div>
-        <h1>Restaurant id: {restid} </h1>
-        <h2>{restaurant?.name}</h2>
-        <img src={IMG_CDN_URL + restaurant?.cloudinaryImageId}></img>
-        <h3>{restaurant?.areaSlug}</h3>
-        <h3>{restaurant?.city}</h3>
-        <h3>{restaurant?.avgRating} : stars</h3>
-        <h3>{restaurant?.costForTwoMsg}</h3>
+      {/* *** RESTAURANT HEADER *** */}
+      <div className="restaurant-header">
+        <div>
+          <img
+            src={IMG_CDN_URL + restaurantMenu?.cloudinaryImageId}
+            height="165"
+          ></img>
+        </div>
+
+        <div className="restaurant-info">
+          <h1>{restaurantMenu?.name}</h1>
+
+          <div>
+            <div className="restaurant-cuisines">
+              {restaurantMenu?.cuisines?.join(", ")}
+            </div>
+
+            <div className="restaurant-location">
+              {restaurantMenu?.locality + ", " + restaurantMenu?.area}
+            </div>
+
+            <div className="restaurant-sub-info">
+              <div>
+                <div>{restaurantMenu?.avgRatingString}</div>
+                <p>{restaurantMenu?.totalRatingsString}</p>
+              </div>
+              <div>
+                <div>{restaurantMenu?.sla?.deliveryTime + " mins"}</div>
+                <p>Delivery Time</p>
+              </div>
+              <div>
+                <div>
+                  {restaurantMenu &&
+                    (restaurantMenu?.costForTwoMsg).split(" ")[0]}
+                </div>
+                <p>Cost for two</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="offer">
+          <div>OFFER</div>
+          <div>
+            <div>
+              {
+                restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[0]
+                  ?.meta
+              }
+            </div>
+            <div>
+              {
+                restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[1]
+                  ?.meta
+              }
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <h1>Menu</h1>
-        <ul>
-          {restaurant?.menu?.items == undefined
+
+      {/*  MENU CONTAINER  */}
+      <div className="menu-container">
+        {/* *** MENU left *** */}
+        <div>
+          {restaurantMenu?.menu?.items == undefined
             ? ""
-            : Object.values(restaurant?.menu?.items).map((item) => (
-                <li key={item.id}>{item.name}</li>
+            : [
+                ...new Set(
+                  Object.values(restaurantMenu?.menu?.items).map(
+                    (item) => item.category
+                  )
+                ),
+              ].map((item) => <div key={item}>{item}</div>)}
+        </div>
+
+        {/* *** MENU center *** */}
+        <div>
+          {restaurantMenu?.menu?.items == undefined
+            ? ""
+            : [
+                ...new Set(
+                  Object.values(restaurantMenu?.menu?.items).map(
+                    (item) => item.category
+                  )
+                ),
+              ].map((item) => (
+                <div key={item}>
+                  <h2>{item}</h2>
+                  <div>
+                    {Object.values(restaurantMenu?.menu?.items)
+                      .filter((ite) => ite.category == item)
+                      .map((it) => (
+                        <div key={it.id}>
+                          <div>
+                            <div>{it.name}</div>
+                            <div>{"Rs " + it.price}</div>
+                            <div>{it.description}</div>
+                          </div>
+                          <div>
+                            <img
+                              src={MENU_IMG_CDN_URL + it.cloudinaryImageId}
+                              width="118"
+                            ></img>
+                            <button>
+                              {restaurantMenu?.availability?.opened
+                                ? "ADD"
+                                : "Unavailable"}
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                </div>
               ))}
-        </ul>
+        </div>
+
+        {/* MENU RIGHT sidebar */}
+        <div>
+          <div>Cart Empty</div>
+          <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_480/Cart_empty_-_menu_2x_ejjkf2"></img>
+          <div>
+            Good food is always cooking! Go ahead, order some yummy items from
+            the menu.
+          </div>
+        </div>
       </div>
     </div>
   );
