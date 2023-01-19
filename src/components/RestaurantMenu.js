@@ -93,7 +93,7 @@ const RestaurantMenu = () => {
       {/*  MENU CONTAINER  */}
       <div className="menu-container">
         {/* *** MENU left *** */}
-        <div>
+        <div className="menu-left-filter">
           {restaurantMenu?.menu?.items == undefined
             ? ""
             : [
@@ -106,7 +106,7 @@ const RestaurantMenu = () => {
         </div>
 
         {/* *** MENU center *** */}
-        <div>
+        <div className="menu-list">
           {restaurantMenu?.menu?.items == undefined
             ? ""
             : [
@@ -118,20 +118,31 @@ const RestaurantMenu = () => {
               ].map((item) => (
                 <div key={item}>
                   <h2>{item}</h2>
+                  <div className="number-of-item">
+                    {Object.values(restaurantMenu?.menu?.items).filter(
+                      (ite) => ite.category == item
+                    ).length + " ITEMS"}
+                  </div>
                   <div>
                     {Object.values(restaurantMenu?.menu?.items)
                       .filter((ite) => ite.category == item)
                       .map((it) => (
-                        <div key={it.id}>
-                          <div>
-                            <div>{it.name}</div>
-                            <div>{"Rs " + it.price}</div>
-                            <div>{it.description}</div>
+                        <div className="restaurant-menu-item" key={it.id}>
+                          <div className="restaurant-menu-item-left">
+                            <h3>{it.name}</h3>
+                            <p>
+                              {"₨ " +
+                                it.price
+                                  .toString()
+                                  .replace(/(?<=^[0-9]{3})/g, ".")}
+                            </p>
+                            <div className="description">{it.description}</div>
                           </div>
-                          <div>
+                          <div className="restaurant-menu-item-right">
                             <img
                               src={MENU_IMG_CDN_URL + it.cloudinaryImageId}
                               width="118"
+                              height="96"
                             ></img>
                             <button>
                               {restaurantMenu?.availability?.opened
@@ -146,10 +157,13 @@ const RestaurantMenu = () => {
               ))}
         </div>
 
-        {/* MENU RIGHT sidebar */}
-        <div>
+        {/* MENU RIGHT sidebar cart*/}
+        <div className="menu-right-cart">
           <div>Cart Empty</div>
-          <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_480/Cart_empty_-_menu_2x_ejjkf2"></img>
+          <img
+            src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_480/Cart_empty_-_menu_2x_ejjkf2"
+            height="212"
+          ></img>
           <div>
             Good food is always cooking! Go ahead, order some yummy items from
             the menu.

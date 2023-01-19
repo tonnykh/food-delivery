@@ -13,7 +13,7 @@
   --text-color-dark: hsl(202, 57%, 15%);
   --text-color-grey: hsl(201, 23%, 34%);
   --text-color-grey-light: hsl(203, 15%, 47%);
-  --text-color-grey-lighter: hsl(208, 18%, 70%);
+  --text-color-grey-lighter: hsl(208, 18%, 93%);
 
   --text-color-highlight: hsl(12, 30%, 42%);
 
@@ -24,6 +24,7 @@
   --background-color-dark: hsl(202, 57%, 15%);
 
   --border-radius: 20px;
+  --border-radius-small: 6px;
 }
 
 body {
@@ -358,8 +359,10 @@ h1 {
 }
 
 /* RESTAURANT MENU PAGE */
+
+/* header */
 .restaurant-header-container {
-    background-color: var(--background-color-dark);
+  background-color: var(--background-color-dark);
 }
 
 .restaurant-header {
@@ -370,7 +373,6 @@ h1 {
   justify-content: space-between;
   align-items: center;
   color: white;
-
 }
 
 .restaurant-info {
@@ -448,3 +450,116 @@ h1 {
 .offer-inner div:first-child {
   margin-bottom: 16px;
 }
+
+/* menu */
+.menu-container {
+  max-width: 1200px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  color: var(--text-color-dark);
+  padding-top: 48px;
+}
+
+.menu-left-filter {
+  min-width: 262px;
+  border-right: 1px solid var(--text-color-grey-lighter);
+  font-size: 0.875rem;
+  line-height: 2.5;
+  text-align: right;
+  padding-right: 32px;
+}
+
+/* menu list */
+.menu-list {
+  width: 538px;
+}
+
+.menu-list h2 {
+  font-size: 1.25rem;
+}
+
+.menu-list h3 {
+  font-size: 1rem;
+  /* font-weight: var(--font-weight-normal); */
+}
+
+.menu-list .number-of-item {
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-color-grey-light);
+  line-height: 2;
+}
+
+.menu-list p {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-normal);
+  /* line-height: 2; */
+}
+
+.restaurant-menu-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px 0 12px;
+  border-bottom: 1px solid var(--text-color-grey-lighter);
+}
+
+.restaurant-menu-item-left {
+  padding-top: 12px;
+}
+
+.restaurant-menu-item p {
+  line-height: 2;
+}
+
+.restaurant-menu-item .description {
+  font-size: 0.875rem;
+  color: var(--text-color-grey-light);
+  font-weight: var(--font-weight-normal);
+  padding-top: 16px;
+}
+
+.restaurant-menu-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 24px;
+}
+
+.restaurant-menu-item-right img {
+  border-radius: var(--border-radius-small);
+}
+
+.restaurant-menu-item-right button {
+  position: relative;
+  top: -24px;
+  width: 96px;
+  height: 36px;
+  border: 1px solid var(--text-color-grey-light);
+  background-color: white;
+}
+
+.menu-right-cart {
+  width: 298px;
+  color: var(--text-color-grey-light);
+}
+
+/* menu right side cart */
+.menu-right-cart div:first-child {
+  font-size: 1.875rem;
+
+  font-weight: var(--font-weight-bold);
+}
+.menu-right-cart img {
+  margin-top: 48px;
+  opacity: 0.5;
+}
+
+.menu-right-cart div:last-child {
+  font-size: 1rem;
+  margin-top: 16px;
+  max-width: 228px;
+}
+
+
+/* var res = num.toString().replace(/^(\d{3})(.*)/ig, '$1.$2'); */
