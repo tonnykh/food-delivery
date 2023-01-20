@@ -9,6 +9,7 @@ import {
   MdLocalOffer,
 } from "react-icons/md";
 import { IoIosStar } from "react-icons/io";
+import { BiCaretUpSquare } from "react-icons/bi";
 
 const RestaurantMenu = () => {
   const { restid } = useParams();
@@ -81,7 +82,7 @@ const RestaurantMenu = () => {
 
             <div className="filter-dishes">
               <div>
-                <label for="dishes-input">
+                <label htmlFor="dishes-input">
                   <MdSearch />
                 </label>
                 <input
@@ -109,22 +110,20 @@ const RestaurantMenu = () => {
                   <MdLocalOffer />
                 </div>
 
-                  {
-                    restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[0]
-                      ?.meta
-                  }
-
+                {
+                  restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[0]
+                    ?.meta
+                }
               </div>
               <div>
                 <div>
                   <MdLocalOffer />
                 </div>
 
-                  {
-                    restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[1]
-                      ?.meta
-                  }
-
+                {
+                  restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[1]
+                    ?.meta
+                }
               </div>
             </div>
           </div>
@@ -170,6 +169,19 @@ const RestaurantMenu = () => {
                       .map((it) => (
                         <div className="restaurant-menu-item" key={it.id}>
                           <div className="restaurant-menu-item-left">
+                            <div>
+                              <i
+                                className={
+                                  it.isVeg
+                                    ? "icon-veg green"
+                                    : "icon-non-veg red"
+                                }
+                              ></i>
+                              <span className="gold">
+                                <i className={it.isBestSeller ? "icon-star" : null}></i>
+                                {it.isBestSeller ? "Bestseller" : null}
+                              </span>
+                            </div>
                             <h3>{it.name}</h3>
                             <p>
                               {"₨ " +

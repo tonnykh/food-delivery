@@ -453,6 +453,10 @@ h1 {
   font-size: 1.25rem;
 }
 
+.filter-dishes div:first-child {
+  width: 254px;
+}
+
 .filter-dishes div:first-child label {
   display: flex;
   align-items: center;
@@ -503,7 +507,11 @@ h1 {
   margin: 0 auto;
   justify-content: space-between;
   color: var(--text-color-dark);
-  padding-top: 48px;
+}
+
+.menu-left-filter,
+.menu-right-cart {
+  padding-top: 64px;
 }
 
 .menu-left-filter {
@@ -520,13 +528,17 @@ h1 {
   width: 538px;
 }
 
+.menu-list > div {
+  border-bottom: 2px solid var(--background-color-dark);
+}
+
 .menu-list h2 {
   font-size: 1.25rem;
+  padding-top: 64px;
 }
 
 .menu-list h3 {
   font-size: 1rem;
-  /* font-weight: var(--font-weight-normal); */
 }
 
 .menu-list .number-of-item {
@@ -539,29 +551,90 @@ h1 {
 .menu-list p {
   font-size: 0.875rem;
   font-weight: var(--font-weight-normal);
-  /* line-height: 2; */
 }
 
 .restaurant-menu-item {
   display: flex;
   justify-content: space-between;
-  padding: 32px 0 12px;
+  padding: 48px 0 32px;
   border-bottom: 1px solid var(--text-color-grey-lighter);
 }
 
-.restaurant-menu-item-left {
-  padding-top: 12px;
+.restaurant-menu-item:first-child {
+  padding: 24px 0 32px;
 }
 
-.restaurant-menu-item p {
+.restaurant-menu-item:last-child {
+  padding: 48px 0 48px;
+}
+
+
+@font-face {
+  font-family: icomoon;
+  src: url(https://res.cloudinary.com/swiggy/raw/upload/static-assets/production_ci_dweb/fonts/icomoon.133be6.ttf)
+    format("truetype");
+}
+
+[class*=" icon-"],
+[class^="icon-"] {
+  font-family: icomoon;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.icon-star:before {
+  content: "\E938";
+}
+
+.icon-veg:before {
+  content: "\E997";
+}
+
+.icon-non-veg:before {
+  content: "\E998";
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: #e43b4f;
+}
+
+.gold {
+  color: #ee9c00;
+}
+
+
+
+
+
+.restaurant-menu-item-left {
+  /* padding-top: 12px; */
+}
+
+.restaurant-menu-item-left div:first-child {
+  display: flex;
+  gap: 8px;
+  font-size: 0.75rem;
   line-height: 2;
 }
 
+.restaurant-menu-item-left div:first-child span {
+  display: flex;
+  gap: 4px;
+}
+
+.restaurant-menu-item p {
+  line-height: 2.2;
+}
+
 .restaurant-menu-item .description {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: var(--text-color-grey-light);
   font-weight: var(--font-weight-normal);
-  padding-top: 16px;
+  padding-top: 12px;
 }
 
 .restaurant-menu-item-right {
@@ -592,7 +665,8 @@ h1 {
 .menu-right-cart {
   width: 298px;
   color: var(--text-color-grey-light);
-  padding: 0 12px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .menu-right-cart div:first-child {
@@ -609,5 +683,3 @@ h1 {
   margin-top: 16px;
   max-width: 228px;
 }
-
-/* var res = num.toString().replace(/^(\d{3})(.*)/ig, '$1.$2'); */
