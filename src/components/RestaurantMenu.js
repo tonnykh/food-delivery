@@ -9,7 +9,7 @@ import {
   MdLocalOffer,
 } from "react-icons/md";
 import { IoIosStar } from "react-icons/io";
-import { BiCaretUpSquare } from "react-icons/bi";
+import FoodItemCard from "./FoodItemCard";
 
 const RestaurantMenu = () => {
   const { restid } = useParams();
@@ -164,52 +164,62 @@ const RestaurantMenu = () => {
                     ).length + " ITEMS"}
                   </div>
                   <div>
-                    {Object.values(restaurantMenu?.menu?.items)
-                      .filter((ite) => ite.category == item)
-                      .map((it) => (
-                        <div className="restaurant-menu-item" key={it.id}>
-                          <div className="restaurant-menu-item-left">
-                            <div>
-                              <i
-                                className={
-                                  it.isVeg
-                                    ? "icon-veg green"
-                                    : "icon-non-veg red"
-                                }
-                              ></i>
-                              <span className="gold">
-                                <i className={it.isBestSeller ? "icon-star" : null}></i>
-                                {it.isBestSeller ? "Bestseller" : null}
-                              </span>
-                            </div>
-                            <h3>{it.name}</h3>
-                            <p>
-                              {"₨ " +
-                                it.price
-                                  .toString()
-                                  .replace(/(?<=^[0-9]{3})/g, ".")}
-                            </p>
-                            <div className="description">{it.description}</div>
-                          </div>
-                          <div className="restaurant-menu-item-right">
-                            <img
-                              src={MENU_IMG_CDN_URL + it.cloudinaryImageId}
-                              width="118"
-                              height="96"
-                            ></img>
-                            <button
-                              className={
-                                restaurantMenu?.availability?.opened
-                                  ? "green"
-                                  : null
-                              }
-                            >
-                              {restaurantMenu?.availability?.opened
-                                ? "ADD"
-                                : "Unavailable"}
-                            </button>
-                          </div>
-                        </div>
+                          {Object.values(restaurantMenu?.menu?.items)
+                              .filter((ite) => ite.category == item)
+                              .map((it) => (
+                                  
+                                  <FoodItemCard {...it} isOpened={restaurantMenu?.availability?.opened } key={it.id}></FoodItemCard>
+                                  
+                        // <div className="restaurant-menu-item" key={it.id}>
+                        //   <div className="restaurant-menu-item-left">
+                        //     <div>
+                        //       <i
+                        //         className={
+                        //           it.isVeg
+                        //             ? "icon-veg green"
+                        //             : "icon-non-veg red"
+                        //         }
+                        //       ></i>
+                        //       <span className="gold">
+                        //         <i
+                        //           className={
+                        //             it.isBestSeller ? "icon-star" : null
+                        //           }
+                        //         ></i>
+                        //         {it.isBestSeller ? "Bestseller" : null}
+                        //       </span>
+                        //     </div>
+                        //     <h3>{it.name}</h3>
+                        //     <p>
+                        //       {"₨ " +
+                        //         it.price
+                        //           .toString()
+                        //           .replace(/(?<=^[0-9]{3})/g, ".")}
+                        //     </p>
+                        //     <div className="description">{it.description}</div>
+                        //   </div>
+                        //   <div className="restaurant-menu-item-right">
+                        //     {it.cloudinaryImageId && (
+                        //       <img
+                        //         src={MENU_IMG_CDN_URL + it.cloudinaryImageId}
+                        //         width="118"
+                        //         height="96"
+                        //       ></img>
+                        //     )}
+
+                        //     <button
+                        //       className={
+                        //         restaurantMenu?.availability?.opened
+                        //           ? "green"
+                        //           : null + it.cloudinaryImageId && "no-image"
+                        //       }
+                        //     >
+                        //       {restaurantMenu?.availability?.opened
+                        //         ? "ADD"
+                        //         : "Unavailable"}
+                        //     </button>
+                        //   </div>
+                        // </div>
                       ))}
                   </div>
                 </div>

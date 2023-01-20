@@ -565,7 +565,7 @@ h1 {
 }
 
 .restaurant-menu-item:last-child {
-  padding: 48px 0 48px;
+  padding: 48px 0 64px;
 }
 
 
@@ -655,6 +655,10 @@ h1 {
   height: 36px;
   border: 1px solid var(--text-color-grey-light);
   background-color: white;
+}
+
+.restaurant-menu-item-right .no-image {
+  top: 32px;
 }
 
 .restaurant-menu-item-right .green {
