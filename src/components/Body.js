@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import TopImagesCarousel from "./TopImagesCarousel";
 import Search from "./Search";
+import Filter from "./Filter";
 import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
-import { MdOutlineFilterAlt } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils";
 
@@ -52,19 +52,7 @@ const Body = () => {
         </div>
       )}
 
-      <div className="filter-container">
-        <div className="filter-category">
-          <p>Relevance</p>
-          <p>Delivery Time</p>
-          <p>Rating</p>
-          <p>Cost: Low to High</p>
-          <p>Cost: High to Low</p>
-          <div className="filter-sub-category">
-            <p>Filters</p>
-            <MdOutlineFilterAlt />
-          </div>
-        </div>
-      </div>
+      <Filter />
 
       <div className="restaurant-list">
         {allRestaurants &&
