@@ -47,7 +47,7 @@ const TopImagesCarousel = (props) => {
   return (
     <div className="top-images-carousel-container">
       <Slider {...settings}>
-        {props.carouselData.map(({ data }) => {
+        {props.carousels.map(({ data }) => {
           return (
             <div key={data.bannerId}>
               <img src={TOP_CAROUSEL_IMG_CDN_URL + data.creativeId} />

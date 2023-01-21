@@ -1,67 +1,49 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import TopImagesCarousel from "./TopImagesCarousel";
-import { MdSearch, MdOutlineFilterAlt } from "react-icons/md";
+import Search from "./Search";
 import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
+import { MdOutlineFilterAlt } from "react-icons/md";
 import { Link } from "react-router-dom";
-
-function filterData(searchTxt, restaurants) {
-  const filterData = restaurants.filter((restaurant) =>
-    restaurant.data.name.toLowerCase().includes(searchTxt.toLowerCase())
-  );
-  return filterData;
-}
+import { filterData } from "../utils";
 
 const Body = () => {
   const [searchTxt, setSearchTxt] = useState("");
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
-  const [carouselData, setCarouselData] = useState("");
-
-
+  const [carousels, setCarousels] = useState("");
 
   useEffect(() => {
-    getRestaurants();
+    fetchRestaurants();
   }, []);
 
-  async function getRestaurants() {
-    const data = await fetch(
+  async function fetchRestaurants() {
+    const response = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&sortBy=RELEVANCE&page_type=DESKTOP_WEB_LISTING"
     );
-    const json = await data.json();
-    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    setCarouselData(json?.data?.cards[0]?.data?.data?.cards);
+    const { data } = await response.json();
+    const { cards: restaurantsData } = data?.cards[2]?.data?.data;
+    const { cards: carouselsData } = data?.cards[0]?.data?.data;
+    setAllRestaurants(restaurantsData);
+    setCarousels(carouselsData);
   }
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const data = filterData(searchTxt, allRestaurants);
+    setFilteredRestaurants(data);
+  };
 
   return (
     <main>
-      <div className="search-container">
-        <form>
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search restaurant.."
-            value={searchTxt}
-            onChange={(e) => {
-              setSearchTxt(e.target.value);
-            }}
-          />
-          <button
-            className="search-btn"
-            onClick={(e) => {
-              const data = filterData(searchTxt, allRestaurants);
-              setFilteredRestaurants(data);
-              e.preventDefault();
-            }}
-          >
-            <MdSearch />
-          </button>
-        </form>
-      </div>
+      <Search
+        searchText={searchTxt}
+        setSearchTxt={setSearchTxt}
+        handleSearch={handleSearch}
+      />
 
-      {carouselData ? (
-        <TopImagesCarousel carouselData={carouselData} />
+      {carousels ? (
+        <TopImagesCarousel carousels={carousels} />
       ) : (
         <div className="shimmer-carousel-container">
           {[...Array(4).keys()].map((n) => {
