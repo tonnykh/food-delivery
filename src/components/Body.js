@@ -5,23 +5,12 @@ import Search from "./Search";
 import Filter from "./Filter";
 import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
 import { Link } from "react-router-dom";
-import { fetchRestaurants, filterData } from "../utils";
+import useRestaurant, { filterData } from "../utils";
 
 const Body = () => {
-  const [searchText, setSearchText] = useState("");
-  const [restaurants, setRestaurants] = useState([]);
+  const [restaurants, carousels, isLoading] = useRestaurant();
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const [carousels, setCarousels] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetchRestaurants(
-      setRestaurants,
-      setCarousels,
-      setFilteredRestaurants,
-      setIsLoading
-    );
-  }, []);
+  const [searchText, setSearchText] = useState("");
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -53,7 +42,10 @@ const Body = () => {
         {/* write logic for NO restaurant found here */}
         {isLoading
           ? [...Array(8).keys()].map((n) => <ShimmerRestaurantCard key={n} />)
-          : filteredRestaurants.map((restaurant) => {
+          : (filteredRestaurants.length === 0
+              ? restaurants
+              : filteredRestaurants
+            ).map((restaurant) => {
               return (
                 <Link
                   to={"/restaurant/" + restaurant.data.id}

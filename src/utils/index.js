@@ -1,4 +1,5 @@
-import fetchRestaurants from "./fetchRestaurants";
 import filterData from "./filterData";
+import useRestaurant from "./useRestaurant";
 
-export { fetchRestaurants, filterData };    
+export { filterData };
+export default useRestaurant;
