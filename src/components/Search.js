@@ -1,7 +1,7 @@
 import React from "react";
 import { MdSearch } from "react-icons/md";
 
-const Search = ({ searchTxt, handleSearch, setSearchTxt }) => {
+const Search = ({ searchText, handleSearch, setSearchText }) => {
   return (
     <div className="search-container">
       <form>
@@ -9,10 +9,10 @@ const Search = ({ searchTxt, handleSearch, setSearchTxt }) => {
           type="text"
           className="search-input"
           placeholder="Search restaurant.."
-          value={searchTxt}
+          value={searchText}
           onChange={(e) => {
             console.log(e.target.value);
-            setSearchTxt(e.target.value);
+            setSearchText(e.target.value);
           }}
         />
         <button

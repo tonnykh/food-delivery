@@ -1,6 +1,6 @@
 import React from "react";
-import { TOP_CAROUSEL_IMG_CDN_URL } from "../config";
-import { topCarouselImageList } from "../config";
+import { TOP_CAROUSEL_IMG_CDN_URL } from "../constants";
+import { topCarouselImageList } from "../constants";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -43,7 +43,6 @@ const settings = {
 };
 
 const TopImagesCarousel = (props) => {
-
   return (
     <div className="top-images-carousel-container">
       <Slider {...settings}>

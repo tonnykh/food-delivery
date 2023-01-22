@@ -5,74 +5,64 @@ import Search from "./Search";
 import Filter from "./Filter";
 import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
 import { Link } from "react-router-dom";
-import { filterData } from "../utils";
+import { fetchRestaurants, filterData } from "../utils";
 
 const Body = () => {
-  const [searchTxt, setSearchTxt] = useState("");
-  const [allRestaurants, setAllRestaurants] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [restaurants, setRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [carousels, setCarousels] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchRestaurants();
-  }, []);
-
-  async function fetchRestaurants() {
-    const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&sortBy=RELEVANCE&page_type=DESKTOP_WEB_LISTING"
+    fetchRestaurants(
+      setRestaurants,
+      setCarousels,
+      setFilteredRestaurants,
+      setIsLoading
     );
-    const { data } = await response.json();
-    const { cards: restaurantsData } = data?.cards[2]?.data?.data;
-    const { cards: carouselsData } = data?.cards[0]?.data?.data;
-    setAllRestaurants(restaurantsData);
-    setCarousels(carouselsData);
-  }
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const data = filterData(searchTxt, allRestaurants);
+    const data = filterData(searchText, restaurants);
     setFilteredRestaurants(data);
   };
 
   return (
     <main>
       <Search
-        searchText={searchTxt}
-        setSearchTxt={setSearchTxt}
+        searchText={searchText}
+        setSearchText={setSearchText}
         handleSearch={handleSearch}
       />
 
-      {carousels ? (
-        <TopImagesCarousel carousels={carousels} />
-      ) : (
+      {isLoading ? (
         <div className="shimmer-carousel-container">
-          {[...Array(4).keys()].map((n) => {
-            return <img className="shimmer shimmer-carousel" key={n}></img>;
-          })}
+          {[...Array(4).keys()].map((n) => (
+            <img className="shimmer shimmer-carousel" key={n} />
+          ))}
         </div>
+      ) : (
+        <TopImagesCarousel carousels={carousels} />
       )}
 
       <Filter />
 
       <div className="restaurant-list">
-        {allRestaurants &&
-          (filteredRestaurants.length > 0
-            ? filteredRestaurants
-            : allRestaurants
-          ).map((restaurant) => {
-            return (
-              <Link
-                to={"/restaurant/" + restaurant.data.id}
-                key={restaurant.data.id}
-              >
-                <RestaurantCard {...restaurant.data} />
-              </Link>
-            );
-          })}
-        {allRestaurants == false &&
-          [...Array(8).keys()].map((n) => {
-            return <ShimmerRestaurantCard key={n} />;
-          })}
+        {/* write logic for NO restaurant found here */}
+        {isLoading
+          ? [...Array(8).keys()].map((n) => <ShimmerRestaurantCard key={n} />)
+          : filteredRestaurants.map((restaurant) => {
+              return (
+                <Link
+                  to={"/restaurant/" + restaurant.data.id}
+                  key={restaurant.data.id}
+                >
+                  <RestaurantCard {...restaurant.data} />
+                </Link>
+              );
+            })}
       </div>
     </main>
   );

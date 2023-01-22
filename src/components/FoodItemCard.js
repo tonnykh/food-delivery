@@ -1,5 +1,5 @@
 import React from "react";
-import { MENU_IMG_CDN_URL } from "../config";
+import { MENU_IMG_CDN_URL } from "../constants";
 
 const FoodItemCard = ({
   id,

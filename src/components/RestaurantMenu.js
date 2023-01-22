@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { IMG_CDN_URL } from "../config";
-import { MENU_IMG_CDN_URL } from "../config";
+import { IMG_CDN_URL } from "../constants";
+import { MENU_IMG_CDN_URL } from "../constants";
 import {
   MdCheckBoxOutlineBlank,
   MdOutlineFavoriteBorder,
@@ -164,12 +164,15 @@ const RestaurantMenu = () => {
                     ).length + " ITEMS"}
                   </div>
                   <div>
-                          {Object.values(restaurantMenu?.menu?.items)
-                              .filter((ite) => ite.category == item)
-                              .map((it) => (
-                                  
-                                  <FoodItemCard {...it} isOpened={restaurantMenu?.availability?.opened } key={it.id}></FoodItemCard>
-                                  
+                    {Object.values(restaurantMenu?.menu?.items)
+                      .filter((ite) => ite.category == item)
+                      .map((it) => (
+                        <FoodItemCard
+                          {...it}
+                          isOpened={restaurantMenu?.availability?.opened}
+                          key={it.id}
+                        ></FoodItemCard>
+
                         // <div className="restaurant-menu-item" key={it.id}>
                         //   <div className="restaurant-menu-item-left">
                         //     <div>
