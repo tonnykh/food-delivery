@@ -12,3 +12,6 @@ export const MENU_IMG_CDN_URL =
 
 export const FETCH_MENU_URL =
   "https://www.swiggy.com/dapi/menu/v4/full?lat=28.5620966&lng=77.2139292&menuId=";
+
+export const EMPTY_CART_IMG_CDN_URL =
+  "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_480/Cart_empty_-_menu_2x_ejjkf2";

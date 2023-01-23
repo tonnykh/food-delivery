@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import RestaurantCard from "./RestaurantCard";
 import TopImagesCarousel from "./TopImagesCarousel";
 import Search from "./Search";
@@ -16,7 +16,11 @@ const Body = () => {
 
   const isOnline = useOnline();
   if (!isOnline) {
-    return <main><h1>🔴 Offline, check your connection</h1></main>;
+    return (
+      <main>
+        <h1>🔴 Offline, check your internet connection !!!</h1>
+      </main>
+    );
   }
 
   return (
