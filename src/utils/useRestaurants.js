@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { RESTAURANTS_API_URL } from "../constants";
 
-const useRestaurant = () => {
+const useRestaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [carousels, setCarousels] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getRestaurant();
+    fetchRestaurant();
   }, []);
 
-  async function getRestaurant() {
+  async function fetchRestaurant() {
     const response = await fetch(RESTAURANTS_API_URL);
     const { data } = await response.json();
     const { cards: restaurantsData } = data?.cards[2]?.data?.data;
@@ -23,4 +23,4 @@ const useRestaurant = () => {
   return [restaurants, carousels, isLoading];
 };
 
-export default useRestaurant;
+export default useRestaurants;

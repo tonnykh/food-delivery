@@ -1,6 +1,5 @@
 import React from "react";
 import { TOP_CAROUSEL_IMG_CDN_URL } from "../constants";
-import { topCarouselImageList } from "../constants";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

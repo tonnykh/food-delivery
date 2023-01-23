@@ -1,5 +1,4 @@
-import filterData from "./filterData";
-import useRestaurant from "./useRestaurant";
+import useSearchFilter from "./useSearchFilter";
+import useRestaurants from "./useRestaurants";
 
-export { filterData };
-export default useRestaurant;
+export {useRestaurants, useSearchFilter};

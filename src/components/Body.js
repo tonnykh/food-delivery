@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import TopImagesCarousel from "./TopImagesCarousel";
 import Search from "./Search";
 import Filter from "./Filter";
 import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
 import { Link } from "react-router-dom";
-import useRestaurant, { filterData } from "../utils";
+import { useRestaurants, useSearchFilter } from "../utils";
 
 const Body = () => {
-  const [restaurants, carousels, isLoading] = useRestaurant();
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const [searchText, setSearchText] = useState("");
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const data = filterData(searchText, restaurants);
-    setFilteredRestaurants(data);
-  };
+  const [restaurants, carousels, isLoading] = useRestaurants();
+  const [filteredRestaurants, handleSearch, searchText, setSearchText] =
+    useSearchFilter();
 
   return (
     <main>
