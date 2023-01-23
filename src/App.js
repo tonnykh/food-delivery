@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,33 +8,16 @@ import Offers from "./components/Offers";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Login from "./components/Login";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Outlet,
-  Navigate,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
-const token = localStorage.getItem("name");
 
 const App = () => {
-  // const [token, setToken] = useState(JSON.parse(localStorage.getItem("name")));
-
-    if (!token) {
-      return <Login />;
-    }
 
   return (
     <>
-      {/* {!token ? (
-        <Login />
-      ) : ( */}
-      <>
-        <Header />
-        <Outlet />
-        <Footer />
-      </>
-      {/* )} */}
+      <Header />
+      <Outlet />
+      <Footer />
     </>
   );
 };
@@ -64,14 +47,6 @@ const appRouter = createBrowserRouter([
     ],
   },
 ]);
-
-// const loginRouter = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Login />,
-//     errorElement: <Error />,
-//   },
-// ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

@@ -1,4 +1,4 @@
-export const RESTAURANTS_API_URL =
+export const FETCH_RESTAURANTS_URL =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&sortBy=RELEVANCE&page_type=DESKTOP_WEB_LISTING";
 
 export const TOP_CAROUSEL_IMG_CDN_URL =
@@ -9,3 +9,6 @@ export const IMG_CDN_URL =
 
 export const MENU_IMG_CDN_URL =
   "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fill/";
+
+export const FETCH_MENU_URL =
+  "https://www.swiggy.com/dapi/menu/v4/full?lat=28.5620966&lng=77.2139292&menuId=";

@@ -5,12 +5,19 @@ import Search from "./Search";
 import Filter from "./Filter";
 import ShimmerRestaurantCard from "./ShimmerRestaurantCard";
 import { Link } from "react-router-dom";
-import { useRestaurants, useSearchFilter } from "../utils";
+import { useRestaurants, useSearchFilter, useOnline } from "../utils";
 
 const Body = () => {
   const [restaurants, carousels, isLoading] = useRestaurants();
   const [filteredRestaurants, handleSearch, searchText, setSearchText] =
     useSearchFilter();
+
+  if (!restaurants) return null;
+
+  const isOnline = useOnline();
+  if (!isOnline) {
+    return <main><h1>🔴 Offline, check your connection</h1></main>;
+  }
 
   return (
     <main>

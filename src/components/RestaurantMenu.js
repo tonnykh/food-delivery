@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "../constants";
-import { MENU_IMG_CDN_URL } from "../constants";
 import {
   MdCheckBoxOutlineBlank,
   MdOutlineFavoriteBorder,
@@ -10,27 +9,11 @@ import {
 } from "react-icons/md";
 import { IoIosStar } from "react-icons/io";
 import FoodItemCard from "./FoodItemCard";
+import { useMenu } from "../utils";
 
-const RestaurantMenu = () => {
+const menu = () => {
   const { restid } = useParams();
-
-  const [restaurantMenu, setRestaurant] = useState(null);
-
-  console.log(restid);
-
-  useEffect(() => {
-    getRestaurantInfo();
-  }, []);
-
-  async function getRestaurantInfo() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/v4/full?lat=28.5620966&lng=77.2139292&menuId=" +
-        restid
-    );
-    const json = await data.json();
-    console.log(json);
-    setRestaurant(json?.data);
-  }
+  const menu = useMenu(restid);
 
   return (
     <div className="menu">
@@ -38,42 +21,39 @@ const RestaurantMenu = () => {
       <div className="restaurant-header-container">
         <div className="restaurant-header">
           <div>
-            <img
-              src={IMG_CDN_URL + restaurantMenu?.cloudinaryImageId}
-              height="165"
-            ></img>
+            <img src={IMG_CDN_URL + menu?.cloudinaryImageId} height="165"></img>
           </div>
 
           <div className="restaurant-info">
-            <h1>{restaurantMenu?.name}</h1>
+            <h1>{menu?.name}</h1>
 
             <div>
               <div className="restaurant-cuisines">
-                {restaurantMenu?.cuisines?.join(", ")}
+                {menu?.cuisines?.join(", ")}
               </div>
 
               <div className="restaurant-location">
-                {restaurantMenu?.locality + ", " + restaurantMenu?.area}
+                {menu?.locality + ", " + menu?.area}
               </div>
 
               <div className="restaurant-sub-info">
                 <div className="restaurant-sub-info-item">
                   <div>
                     <IoIosStar />
-                    {" " + restaurantMenu?.avgRatingString}
+                    {" " + menu?.avgRatingString}
                   </div>
-                  <p>{restaurantMenu?.totalRatingsString}</p>
+                  <p>{menu?.totalRatingsString}</p>
                 </div>
 
                 <div className="restaurant-sub-info-item">
-                  <div>{restaurantMenu?.sla?.deliveryTime + " mins"}</div>
+                  <div>{menu?.sla?.deliveryTime + " mins"}</div>
                   <p>Delivery Time</p>
                 </div>
 
                 <div className="restaurant-sub-info-item">
                   <div>
-                    {restaurantMenu &&
-                      (restaurantMenu?.costForTwoMsg).split(" ")[0]}
+                    {menu &&
+                      (menu?.costForTwoMsg).split(" ")[0]}
                   </div>
                   <p>Cost for two</p>
                 </div>
@@ -111,7 +91,7 @@ const RestaurantMenu = () => {
                 </div>
 
                 {
-                  restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[0]
+                  menu?.aggregatedDiscountInfoV2?.descriptionList[0]
                     ?.meta
                 }
               </div>
@@ -121,7 +101,7 @@ const RestaurantMenu = () => {
                 </div>
 
                 {
-                  restaurantMenu?.aggregatedDiscountInfoV2?.descriptionList[1]
+                  menu?.aggregatedDiscountInfoV2?.descriptionList[1]
                     ?.meta
                 }
               </div>
@@ -134,11 +114,11 @@ const RestaurantMenu = () => {
       <div className="menu-container">
         {/* *** MENU left *** */}
         <div className="menu-left-filter">
-          {restaurantMenu?.menu?.items == undefined
+          {menu?.menu?.items == undefined
             ? ""
             : [
                 ...new Set(
-                  Object.values(restaurantMenu?.menu?.items).map(
+                  Object.values(menu?.menu?.items).map(
                     (item) => item.category
                   )
                 ),
@@ -147,11 +127,11 @@ const RestaurantMenu = () => {
 
         {/* *** MENU center *** */}
         <div className="menu-list">
-          {restaurantMenu?.menu?.items == undefined
+          {menu?.menu?.items == undefined
             ? ""
             : [
                 ...new Set(
-                  Object.values(restaurantMenu?.menu?.items).map(
+                  Object.values(menu?.menu?.items).map(
                     (item) => item.category
                   )
                 ),
@@ -159,70 +139,19 @@ const RestaurantMenu = () => {
                 <div key={item}>
                   <h2>{item}</h2>
                   <div className="number-of-item">
-                    {Object.values(restaurantMenu?.menu?.items).filter(
+                    {Object.values(menu?.menu?.items).filter(
                       (ite) => ite.category == item
                     ).length + " ITEMS"}
                   </div>
                   <div>
-                    {Object.values(restaurantMenu?.menu?.items)
+                    {Object.values(menu?.menu?.items)
                       .filter((ite) => ite.category == item)
                       .map((it) => (
                         <FoodItemCard
                           {...it}
-                          isOpened={restaurantMenu?.availability?.opened}
+                          isOpened={menu?.availability?.opened}
                           key={it.id}
                         ></FoodItemCard>
-
-                        // <div className="restaurant-menu-item" key={it.id}>
-                        //   <div className="restaurant-menu-item-left">
-                        //     <div>
-                        //       <i
-                        //         className={
-                        //           it.isVeg
-                        //             ? "icon-veg green"
-                        //             : "icon-non-veg red"
-                        //         }
-                        //       ></i>
-                        //       <span className="gold">
-                        //         <i
-                        //           className={
-                        //             it.isBestSeller ? "icon-star" : null
-                        //           }
-                        //         ></i>
-                        //         {it.isBestSeller ? "Bestseller" : null}
-                        //       </span>
-                        //     </div>
-                        //     <h3>{it.name}</h3>
-                        //     <p>
-                        //       {"₨ " +
-                        //         it.price
-                        //           .toString()
-                        //           .replace(/(?<=^[0-9]{3})/g, ".")}
-                        //     </p>
-                        //     <div className="description">{it.description}</div>
-                        //   </div>
-                        //   <div className="restaurant-menu-item-right">
-                        //     {it.cloudinaryImageId && (
-                        //       <img
-                        //         src={MENU_IMG_CDN_URL + it.cloudinaryImageId}
-                        //         width="118"
-                        //         height="96"
-                        //       ></img>
-                        //     )}
-
-                        //     <button
-                        //       className={
-                        //         restaurantMenu?.availability?.opened
-                        //           ? "green"
-                        //           : null + it.cloudinaryImageId && "no-image"
-                        //       }
-                        //     >
-                        //       {restaurantMenu?.availability?.opened
-                        //         ? "ADD"
-                        //         : "Unavailable"}
-                        //     </button>
-                        //   </div>
-                        // </div>
                       ))}
                   </div>
                 </div>
@@ -245,4 +174,4 @@ const RestaurantMenu = () => {
     </div>
   );
 };
-export default RestaurantMenu;
+export default menu;

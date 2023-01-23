@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { RESTAURANTS_API_URL } from "../constants";
+import { FETCH_RESTAURANTS_URL } from "../constants";
 
 const useRestaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -11,11 +11,11 @@ const useRestaurants = () => {
   }, []);
 
   async function fetchRestaurant() {
-    const response = await fetch(RESTAURANTS_API_URL);
+    const response = await fetch(FETCH_RESTAURANTS_URL);
     const { data } = await response.json();
-    const { cards: restaurantsData } = data?.cards[2]?.data?.data;
-    const { cards: carouselsData } = data?.cards[0]?.data?.data;
-    setRestaurants(restaurantsData);
+    const restaurantData = data?.cards[2]?.data?.data?.cards;
+    const carouselsData = data?.cards[0]?.data?.data?.cards;
+    setRestaurants(restaurantData);
     setCarousels(carouselsData);
     setIsLoading(false);
   }
