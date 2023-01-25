@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   MdOutlineLocalOffer,
   MdHelpOutline,
   MdOutlinePerson,
   MdOutlineShoppingCart,
-} from "react-icons/md";
+} from 'react-icons/md';
 
-const Title = () => <h1>Food Villa</h1>;
+function Title() {
+  return <h1>Food Villa</h1>;
+}
 
-const Header = () => {
+function Header() {
   const [isLogin, setIsLogin] = useState(true);
 
   const handleClick = () => {
@@ -43,14 +45,14 @@ const Header = () => {
             Cart
           </li>
           <li>
-            <button onClick={handleClick}>
-              {isLogin ? "Logout" : "Login"}
+            <button type="button" onClick={handleClick}>
+              {isLogin ? 'Logout' : 'Login'}
             </button>
           </li>
         </ul>
       </div>
     </header>
   );
-};
+}
 
 export default Header;

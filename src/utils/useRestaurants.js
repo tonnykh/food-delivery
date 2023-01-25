@@ -1,14 +1,10 @@
-import { useState, useEffect } from "react";
-import { FETCH_RESTAURANTS_URL } from "../constants";
+import { useState, useEffect } from 'react';
+import { FETCH_RESTAURANTS_URL } from '../constants';
 
 const useRestaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
-  const [carousels, setCarousels] = useState("");
+  const [carousels, setCarousels] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetchRestaurant();
-  }, []);
 
   async function fetchRestaurant() {
     const response = await fetch(FETCH_RESTAURANTS_URL);
@@ -19,6 +15,10 @@ const useRestaurants = () => {
     setCarousels(carouselsData);
     setIsLoading(false);
   }
+
+  useEffect(() => {
+    fetchRestaurant();
+  }, []);
 
   return [restaurants, carousels, isLoading];
 };

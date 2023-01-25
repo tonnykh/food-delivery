@@ -3,10 +3,10 @@ import {
   MdCheckBoxOutlineBlank,
   MdOutlineFavoriteBorder,
   MdSearch,
-} from "react-icons/md";
-import { IoIosStar } from "react-icons/io";
+} from 'react-icons/md';
+import { IoIosStar } from 'react-icons/io';
 
-const RestaurantInfo = ({
+function RestaurantInfo({
   name,
   cuisines,
   locality,
@@ -16,28 +16,28 @@ const RestaurantInfo = ({
   sla,
   costForTwoMsg,
   menu,
-}) => {
+}) {
   return (
     <div className="restaurant-info">
       <h1>{name}</h1>
 
       <div>
-        <div className="restaurant-cuisines">{cuisines?.join(", ")}</div>
-        <div className="restaurant-location">{locality + ", " + area}</div>
+        <div className="restaurant-cuisines">{cuisines?.join(', ')}</div>
+        <div className="restaurant-location">{`${locality}, ${area}`}</div>
         <div className="restaurant-sub-info">
           <div className="restaurant-sub-info-item">
             <div>
               <IoIosStar />
-              {" " + avgRatingString}
+              {` ${avgRatingString}`}
             </div>
             <p>{totalRatingsString}</p>
           </div>
           <div className="restaurant-sub-info-item">
-            <div>{sla?.deliveryTime + " mins"}</div>
+            <div>{`${sla?.deliveryTime} mins`}</div>
             <p>Delivery Time</p>
           </div>
           <div className="restaurant-sub-info-item">
-            <div>{menu && costForTwoMsg.split(" ")[0]}</div>
+            <div>{menu && costForTwoMsg.split(' ')[0]}</div>
             <p>Cost for two</p>
           </div>
         </div>
@@ -52,7 +52,7 @@ const RestaurantInfo = ({
             type="text"
             id="dishes-input"
             placeholder="Search for dishes.."
-          ></input>
+          />
         </div>
         <div>
           <MdCheckBoxOutlineBlank />
@@ -65,6 +65,6 @@ const RestaurantInfo = ({
       </div>
     </div>
   );
-};
+}
 
 export default RestaurantInfo;

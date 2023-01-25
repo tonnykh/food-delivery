@@ -1,10 +1,10 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { useMenu } from "../utils";
-import MenuHeader from "./MenuHeader";
-import MenuBody from "./MenuBody";
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useMenu } from '../utils';
+import MenuHeader from './MenuHeader';
+import MenuBody from './MenuBody';
 
-const menu = () => {
+function RestaurantMenu() {
   const { restid } = useParams();
   const menu = useMenu(restid);
 
@@ -14,6 +14,6 @@ const menu = () => {
       <MenuBody {...menu} />
     </div>
   );
-};
+}
 
-export default menu;
+export default RestaurantMenu;

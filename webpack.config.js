@@ -1,21 +1,21 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  mode: "development",
-  entry: "./src/App.js",
-  devtool: "inline-source-map",
+  mode: 'development',
+  entry: './src/App.js',
+  devtool: 'inline-source-map',
   devServer: {
-    static: "./dist",
+    static: './dist',
+    historyApiFallback: true,
   },
 
   output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "/",
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
-  devServer: { historyApiFallback: true },
 
   module: {
     rules: [
@@ -23,25 +23,25 @@ module.exports = {
         test: /\.?js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
+            presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "index.html"),
+      template: path.join(__dirname, 'src', 'index.html'),
     }),
   ],
 };

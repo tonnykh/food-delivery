@@ -1,9 +1,7 @@
-import React from "react";
-import {
-  MdLocalOffer,
-} from "react-icons/md";
+import React from 'react';
+import { MdLocalOffer } from 'react-icons/md';
 
-const Offer = ({ aggregatedDiscountInfoV2 }) => {
+function RestaurantOffer({ aggregatedDiscountInfoV2 }) {
   return (
     <div className="offer">
       <h3>OFFER</h3>
@@ -23,6 +21,6 @@ const Offer = ({ aggregatedDiscountInfoV2 }) => {
       </div>
     </div>
   );
-};
+}
 
-export default Offer;
+export default RestaurantOffer;

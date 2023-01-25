@@ -1,9 +1,9 @@
-import { IMG_CDN_URL } from "../constants";
-import React from "react";
-import { IoIosStar } from "react-icons/io";
-import { MdLocalOffer } from "react-icons/md";
+import React from 'react';
+import { IoIosStar } from 'react-icons/io';
+import { MdLocalOffer } from 'react-icons/md';
+import { IMG_CDN_URL } from '../constants';
 
-const RestaurantCard = ({
+function RestaurantCard({
   name,
   cuisines,
   cloudinaryImageId,
@@ -11,23 +11,23 @@ const RestaurantCard = ({
   slaString,
   costForTwoString,
   aggregatedDiscountInfo,
-}) => {
+}) {
   const offer = aggregatedDiscountInfo.shortDescriptionList[0].meta;
 
   return (
     <div className="card">
       {/* <img className="skeleton" /> */}
 
-      <img src={IMG_CDN_URL + cloudinaryImageId} className="skeleton" />
+      <img src={IMG_CDN_URL + cloudinaryImageId} className="skeleton" alt="" />
 
       <div className="store-name-with-cuisine">
         <h2>{name}</h2>
-        <h3>{cuisines.join(", ")}</h3>
+        <h3>{cuisines.join(', ')}</h3>
       </div>
 
       <div className="store-item-details">
         <div className="star-rating">
-          <h4 className={avgRating > 4 ? "green" : "orange"}>
+          <h4 className={avgRating > 4 ? 'green' : 'orange'}>
             <IoIosStar />
             {avgRating}
           </h4>
@@ -46,6 +46,6 @@ const RestaurantCard = ({
       </div>
     </div>
   );
-};
+}
 
 export default RestaurantCard;

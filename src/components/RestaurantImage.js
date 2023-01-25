@@ -1,12 +1,12 @@
-import React from "react";
-import { IMG_CDN_URL } from "../constants";
+import React from 'react';
+import { IMG_CDN_URL } from '../constants';
 
-const RestaurantImage = ({ cloudinaryImageId }) => {
+function RestaurantImage({ cloudinaryImageId }) {
   return (
     <div>
-      <img src={IMG_CDN_URL + cloudinaryImageId} height="165"></img>
+      <img src={IMG_CDN_URL + cloudinaryImageId} height="165" alt="" />
     </div>
   );
-};
+}
 
 export default RestaurantImage;

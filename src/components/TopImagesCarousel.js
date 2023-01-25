@@ -1,9 +1,11 @@
-import React from "react";
-import { TOP_CAROUSEL_IMG_CDN_URL } from "../constants";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+/* eslint-disable object-curly-newline */
+/* eslint-disable react/jsx-no-useless-fragment */
+import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
+import { TOP_CAROUSEL_IMG_CDN_URL } from '../constants';
 
 const slidesToShow = 4;
 
@@ -12,7 +14,7 @@ function PrevArrow(props) {
   return (
     <>
       {currentSlide !== 0 && (
-        <div className={className} onClick={onClick}>
+        <div className={className} onClick={onClick} aria-hidden="true">
           <MdArrowBackIos />
         </div>
       )}
@@ -25,7 +27,7 @@ function NextArrow(props) {
   return (
     <>
       {currentSlide !== slideCount - slidesToShow && (
-        <div className={className} onClick={onClick}>
+        <div className={className} onClick={onClick} aria-hidden="true">
           <MdArrowForwardIos />
         </div>
       )}
@@ -35,26 +37,30 @@ function NextArrow(props) {
 
 const settings = {
   speed: 600,
-  slidesToShow: slidesToShow,
+  slidesToShow,
   slidesToScroll: 1,
   prevArrow: <PrevArrow />,
   nextArrow: <NextArrow />,
 };
 
-const TopImagesCarousel = (props) => {
-  return (
+function TopImagesCarousel({ isLoading, carousels }) {
+  return isLoading ? (
+    <div className="shimmer-carousel-container">
+      {[...Array(4).keys()].map((n) => (
+        <img className="shimmer shimmer-carousel" key={n} alt="" />
+      ))}
+    </div>
+  ) : (
     <div className="top-images-carousel-container">
       <Slider {...settings}>
-        {props.carousels.map(({ data }) => {
-          return (
-            <div key={data.bannerId}>
-              <img src={TOP_CAROUSEL_IMG_CDN_URL + data.creativeId} />
-            </div>
-          );
-        })}
+        {carousels.map(({ data }) => (
+          <div key={data.bannerId}>
+            <img src={TOP_CAROUSEL_IMG_CDN_URL + data.creativeId} alt="" />
+          </div>
+        ))}
       </Slider>
     </div>
   );
-};
+}
 
 export default TopImagesCarousel;

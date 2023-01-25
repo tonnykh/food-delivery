@@ -36,7 +36,7 @@ const FoodItemCard = ({
 
         <button
           className={
-            isOpened ? "green" : null + cloudinaryImageId && "no-image"
+            (isOpened ? "green" : null) + " " + (!cloudinaryImageId && "no-image")
           }
         >
           {isOpened ? "ADD" : "Unavailable"}
