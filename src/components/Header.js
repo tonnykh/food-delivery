@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../CartContext';
 import {
   MdOutlineLocalOffer,
   MdHelpOutline,
@@ -13,7 +14,12 @@ function Title() {
 
 function Header() {
   const [isLogin, setIsLogin] = useState(true);
-
+  const cart = useContext(CartContext);
+  const productsCount = cart?.items.reduce(
+    (sum, product) => sum + product.quantity,
+    0
+  );
+  
   const handleClick = () => {
     localStorage.clear();
     window.location.reload();
@@ -41,8 +47,10 @@ function Header() {
             Sign In
           </li>
           <li>
-            <MdOutlineShoppingCart />
-            Cart
+            <button>
+              <MdOutlineShoppingCart />
+              Cart ({productsCount} items)
+            </button>
           </li>
           <li>
             <button type="button" onClick={handleClick}>

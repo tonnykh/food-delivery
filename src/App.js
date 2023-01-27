@@ -9,13 +9,16 @@ import Error from './components/Error';
 import RestaurantMenu from './components/RestaurantMenu';
 import Login from './components/Login';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import CartProvider from './CartContext';
 
 const App = () => {
   return (
     <>
+      <CartProvider>
       <Header />
       <Outlet />
       <Footer />
+      </CartProvider>
     </>
   );
 };
