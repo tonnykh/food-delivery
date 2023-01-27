@@ -10,7 +10,7 @@ const MenuCenterList = ({ categories, menu, availability }) => {
     <div className="menu-list">
       {categories.map((category) => (
         <div key={category}>
-          <h2>{category}</h2>
+          <h2 id={category}>{category}</h2>
           <div className="number-of-item">
             {filterItemByCategory(menu, category).length + ' ITEMS'}
           </div>

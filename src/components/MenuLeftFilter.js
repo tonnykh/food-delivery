@@ -4,7 +4,9 @@ const MenuLeftFilter = ({ categories }) => {
   return (
     <div className="menu-left-filter">
       {categories.map((item) => (
-        <div key={item}>{item}</div>
+        <a href={"#" + item}>
+          <div key={item}>{item}</div>
+        </a>
       ))}
     </div>
   );
