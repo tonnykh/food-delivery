@@ -6,10 +6,19 @@ import MenuBody from './MenuBody';
 import RestaurantInfo from './RestaurantInfo';
 import RestaurantOffer from './RestaurantOffer';
 import RestaurantImage from './RestaurantImage';
+import MenuLeftFilter from './MenuLeftFilter';
+import MenuCenterList from './MenuCenterList';
+import MenuRightCart from './MenuRightCart';
 
 function RestaurantMenu() {
   const { restid } = useParams();
   const menu = useMenu(restid);
+  const menuItems = menu?.menu?.items;
+  if (!menuItems) return null;
+
+  const categories = menuItems !== undefined && [
+    ...new Set(Object.values(menuItems).map((item) => item.category)),
+  ];
 
   return (
     <div className="menu">
@@ -20,7 +29,16 @@ function RestaurantMenu() {
           aggregatedDiscountInfoV2={menu.aggregatedDiscountInfoV2}
         />
       </MenuHeader>
-      <MenuBody {...menu} />
+
+      <MenuBody>
+        <MenuLeftFilter categories={categories} />
+        <MenuCenterList
+          categories={categories}
+          availability={menu?.availability}
+          menu={menuItems}
+        />
+        <MenuRightCart />
+      </MenuBody>
     </div>
   );
 }
