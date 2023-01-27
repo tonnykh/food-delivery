@@ -16,7 +16,7 @@ export function CartProvider({ children }) {
   const { restid } = useParams();
   const menu = useMenu(restid);
   const menuItems =
-    menu?.menu?.items !== undefined && Object.values(menu?.menu?.items);
+    menu?.menu?.items !== undefined ? Object.values(menu?.menu?.items) : [];
 
   function getProductData(id) {
     return menuItems.find((item) => item.id === id);

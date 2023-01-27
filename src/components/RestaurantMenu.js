@@ -21,7 +21,7 @@ function RestaurantMenu() {
   ];
 
   return (
-    <div className="menu">
+    <main className="menu">
       <MenuHeader>
         <RestaurantImage cloudinaryImageId={menu.cloudinaryImageId} />
         <RestaurantInfo {...menu} />
@@ -39,7 +39,7 @@ function RestaurantMenu() {
         />
         <MenuRightCart />
       </MenuBody>
-    </div>
+    </main>
   );
 }
 
