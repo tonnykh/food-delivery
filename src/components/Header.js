@@ -9,7 +9,7 @@ import {
 } from 'react-icons/md';
 
 function Title() {
-  return <h1>Food Villa</h1>;
+  return <h1 className='text-9xl'>Food Villa</h1>;
 }
 
 function Header() {

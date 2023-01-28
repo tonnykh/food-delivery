@@ -23,14 +23,16 @@ function CartProduct(props) {
     <>
       <h3>{productData?.name}</h3>
       <p>{quantity} total</p>
-      <p>Rs {productData?.price / 100}</p>
+      <p>
+        Rs {productData?.price / 100}
+      </p>
       <button
         onClick={() => cart.removeOneFromCart(id)}
         style={{ width: '40px', fontSize: '2rem' }}
       >
         -
       </button>
-          <h2>{quantity}</h2>
+      <h2>{quantity}</h2>
       <button
         onClick={() => cart.addOneToCart(id)}
         style={{ width: '40px', fontSize: '2rem' }}

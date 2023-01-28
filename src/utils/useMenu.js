@@ -14,7 +14,7 @@ const useMenu = (restid) => {
     getRestaurantInfo();
   }, []);
 
-  console.log(menu, 'MENU');
+  console.log(menu, 'USE MENU');
 
   return menu;
 };

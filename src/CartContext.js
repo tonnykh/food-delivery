@@ -14,11 +14,21 @@ export const CartContext = createContext({
 export function CartProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
   const { restid } = useParams();
+  console.log(restid, 'REST ID');
   const menu = useMenu(restid);
+  if (!menu?.menu?.items) return null;
+
+  console.log(menu, 'CART MENU');
   const menuItems =
     menu?.menu?.items !== undefined ? Object.values(menu?.menu?.items) : [];
 
   function getProductData(id) {
+    console.log(menuItems, 'MENU ITEMS GET');
+    console.log(id, 'ID MENU ');
+    console.log(
+      menuItems.find((item) => item.id === id),
+      'RETURN'
+    );
     return menuItems.find((item) => item.id === id);
   }
 
@@ -70,10 +80,17 @@ export function CartProvider({ children }) {
 
   function getTotalCost() {
     let totalCost = 0;
+
     cartProducts.map((cartItem) => {
       const productData = getProductData(cartItem.id);
-      totalCost += (productData?.price / 100) * cartItem.quantity;
+
+      console.log(productData, 'PRODUCT DATA');
+      const productPrice = productData?.price;
+      console.log(productPrice, 'PRODUCT PRICE');
+
+      totalCost += productPrice * cartItem.quantity;
     });
+
     return totalCost;
   }
 
