@@ -9,7 +9,11 @@ import IsOnline from './IsOnline';
 function Body() {
   const [restaurants, carousels, isLoading] = useRestaurants();
   const [filteredRestaurants, handleSearch, searchText, setSearchText] = useSearchFilter();
-  if (!restaurants) return null;
+  // if (!restaurants) return null;
+
+
+  console.log(carousels, "USE RESTAURANTS");
+
 
   const isOnline = useOnline();
   if (!isOnline) {

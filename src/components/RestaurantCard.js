@@ -15,34 +15,38 @@ function RestaurantCard({
   const offer = aggregatedDiscountInfo.shortDescriptionList[0].meta;
 
   return (
-    <div className="card">
+    <div className="card max-w-[280px] p-4 hover:cursor-pointer hover:shadow-xl">
       {/* <img className="skeleton" /> */}
 
-      <img src={IMG_CDN_URL + cloudinaryImageId} className="skeleton" alt="" />
+      <img src={IMG_CDN_URL + cloudinaryImageId} className="w-full" alt="" />
 
-      <div className="store-name-with-cuisine">
-        <h2>{name}</h2>
-        <h3>{cuisines.join(', ')}</h3>
+      <div className="store-name-with-cuisine py-2">
+        <h2 className="text-base text-gray-dark">{name}</h2>
+        <h3 className="mt-1 text-xs font-normal text-gray-light">
+          {cuisines.join(', ')}
+        </h3>
       </div>
 
-      <div className="store-item-details">
+      <div className="store-item-details flex  justify-between pt-2 pb-4 text-xs leading-loose text-gray-light">
         <div className="star-rating">
-          <h4 className={avgRating > 4 ? 'green' : 'orange'}>
-            <IoIosStar />
+          <h4
+            className={
+              avgRating > 4
+                ? 'green text-green flex gap-1 pr-2 pl-1 font-normal leading-loose'
+                : 'orange text-orange font-normal leading-loose'
+            }
+          >
             {avgRating}
           </h4>
         </div>
         <div>•</div>
-        <h4>{slaString}</h4>
+        <h4 className="font-normal leading-loose">{slaString}</h4>
         <div>•</div>
-        <h4>{costForTwoString}</h4>
+        <h4 className="font-normal leading-loose">{costForTwoString}</h4>
       </div>
 
-      <div className="store-offer">
-        <h4>
-          <MdLocalOffer />
-          {offer}
-        </h4>
+      <div className="store-offer border-t text-gray-lighter py-3">
+        <h4 className="font-normal leading-loose text-sm text-brown-light items-center gap-1">{offer}</h4>
       </div>
     </div>
   );

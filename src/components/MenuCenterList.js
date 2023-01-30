@@ -7,14 +7,16 @@ const filterItemByCategory = (menu, category) => {
 
 const MenuCenterList = ({ categories, menu, availability }) => {
   return (
-    <div className="menu-list">
+    <div className="menu-list w-[538px]">
       {categories.map((category) => (
-        <div key={category}>
-          <h2 id={category}>{category}</h2>
-          <div className="number-of-item">
+        <div key={category} className="border-b-2 border-gray-dark">
+          <h2 id={category} className="pt-16 text-xl">
+            {category}
+          </h2>
+          <div className="number-of-item text-xs font-bold leading-loose text-gray-light">
             {filterItemByCategory(menu, category).length + ' ITEMS'}
           </div>
-          <div>
+          <div className="">
             {filterItemByCategory(menu, category).map((item) => (
               <FoodItemCard
                 {...item}

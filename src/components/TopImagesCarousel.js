@@ -1,64 +1,33 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/jsx-no-useless-fragment */
 import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
 import { TOP_CAROUSEL_IMG_CDN_URL } from '../constants';
 
-const slidesToShow = 4;
-
-function PrevArrow(props) {
-  const { className, onClick, currentSlide } = props;
-  return (
-    <>
-      {currentSlide !== 0 && (
-        <div className={className} onClick={onClick} aria-hidden="true">
-          <MdArrowBackIos />
-        </div>
-      )}
-    </>
-  );
-}
-
-function NextArrow(props) {
-  const { className, onClick, slideCount, currentSlide } = props;
-  return (
-    <>
-      {currentSlide !== slideCount - slidesToShow && (
-        <div className={className} onClick={onClick} aria-hidden="true">
-          <MdArrowForwardIos />
-        </div>
-      )}
-    </>
-  );
-}
-
-const settings = {
-  speed: 600,
-  slidesToShow,
-  slidesToScroll: 1,
-  prevArrow: <PrevArrow />,
-  nextArrow: <NextArrow />,
-};
-
 function TopImagesCarousel({ isLoading, carousels }) {
+  console.log(carousels, "CAROUSELS");
+
   return isLoading ? (
-    <div className="shimmer-carousel-container">
-      {[...Array(4).keys()].map((n) => (
-        <img className="shimmer shimmer-carousel" key={n} alt="" />
-      ))}
+    <div className="shimmer-carousel-container flex h-80 content-center items-center gap-12 bg-gray-dark">
+      {/* {[...Array(4).keys()].map((n) => (
+        <img
+          className="shimmer shimmer-carousel h-64 w-64 animate-pulse"
+          key={n}
+          alt=""
+        />
+      ))} */}
     </div>
   ) : (
-    <div className="top-images-carousel-container">
-      <Slider {...settings}>
-        {carousels.map(({ data }) => (
-          <div key={data.bannerId}>
-            <img src={TOP_CAROUSEL_IMG_CDN_URL + data.creativeId} alt="" />
-          </div>
-        ))}
-      </Slider>
+    <div className="top-images-carousel-container flex">
+
+      {carousels.map(({ data }) => (
+        <div key={data.bannerId}>
+          <img
+            className="w-64 cursor-pointer transition duration-700 ease-in-out hover:scale-105 hover:overflow-visible"
+            src={TOP_CAROUSEL_IMG_CDN_URL + data.creativeId}
+            alt=""
+          />
+        </div>
+      ))}
     </div>
   );
 }

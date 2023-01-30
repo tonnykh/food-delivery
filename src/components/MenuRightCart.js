@@ -9,10 +9,10 @@ const MenuRightCart = () => {
     (sum, product) => sum + product.quantity, 0);
 
   return (
-    <div className="menu-right-cart">
+    <div className="menu-right-cart w-72 pl-3 pr-3 pt-16 text-gray-light">
       {productsCount > 0 ? (
         <>
-          <div>Cart</div>
+          <div className="text-3xl font-bold">Cart</div>
           <p>{productsCount}ITEM</p>
           {cart.items.map((currentProduct, id) => (
             <CartProduct
@@ -25,9 +25,16 @@ const MenuRightCart = () => {
         </>
       ) : (
         <>
-          <div>Cart Empty</div>
-          <img src={EMPTY_CART_IMG_CDN_URL} height="212"></img>
-          <div>
+          <div className="text-3xl font-bold">Cart Empty</div>
+          <img
+            src={EMPTY_CART_IMG_CDN_URL}
+            height="212"
+            className="mt-12 opacity-50"
+          ></img>
+          <div
+            className="mt-4
+          max-w-[228px] text-base"
+          >
             Good food is always cooking! Go ahead, order some yummy items from
             the menu.
           </div>
