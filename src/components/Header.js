@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../CartContext';
 
 function Title() {
-  return <h1 className="text-3xl text-gray-dark">Food Villa</h1>;
+  return (
+    <h1 className="text-3xl text-gray-dark">
+      <Link to={"/"}>Food Villa</Link>
+    </h1>
+  );
 }
 
 function Header() {
@@ -29,7 +33,9 @@ function Header() {
           <li className="flex items-center gap-2">
             <Link to="/offers">Offers</Link>
           </li>
-          <li className="flex items-center gap-2">Help</li>
+          <li className="flex items-center gap-2">
+            <Link to="/help">Help</Link>
+          </li>
           <li className="flex items-center gap-2">Sign In</li>
           <li className="flex items-center gap-2">
             <button>Cart ({productsCount} items)</button>
