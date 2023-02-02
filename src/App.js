@@ -12,6 +12,8 @@ import Help from './components/Help';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import CartProvider from './CartContext';
 import UserContext from './utils/UserContext';
+import Test from './components/Test';
+import RestaurantList from './components/RestaurantList';
 
 const App = () => {
   const [user, setUser] = useState({
@@ -44,6 +46,12 @@ const appRouter = createBrowserRouter([
       {
         path: '/',
         element: <Body />,
+        children: [
+          {
+            path: ':sortid',
+            element: <RestaurantList />,
+          },
+        ],
       },
       {
         path: '/offers',

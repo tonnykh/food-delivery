@@ -1,10 +1,17 @@
+// export const FETCH_RESTAURANTS_URL =
+// "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&sortBy=RELEVANCE&page_type=DESKTOP_WEB_LISTING";
+
+// 'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&page_type=DESKTOP_WEB_LISTING';
+
+// export const FETCH_RESTAURANTS_HIGH_TO_LOW_COST_URL = () => {
+//   'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&sortBy=COST_FOR_TWO_H2L&page_type=DESKTOP_WEB_LISTING';
+// };
+//  'sortBy=COST_FOR_TWO_H2L&';
+
 export const FETCH_RESTAURANTS_URL =
-  // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&sortBy=RELEVANCE&page_type=DESKTOP_WEB_LISTING";
+  'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&';
 
-  'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&page_type=DESKTOP_WEB_LISTING';
-
-export const FETCH_RESTAURANTS_HIGH_TO_LOW_COST_URL =
-  'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&sortBy=COST_FOR_TWO_H2L&page_type=DESKTOP_WEB_LISTING';
+export const PAGE_TYPE = 'page_type=DESKTOP_WEB_LISTING';
 
 export const TOP_CAROUSEL_IMG_CDN_URL =
   'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_520,h_520/';

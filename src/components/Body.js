@@ -6,15 +6,15 @@ import {
   useRestaurants,
   useSearchFilter,
   useOnline,
-  useRestaurantsHighToLow,
 } from '../utils';
 import RestaurantList from './RestaurantList';
 import IsOnline from './IsOnline';
 // import useRestaurantsHighToLow from '../utils/useRestaurantsHighToLowCost';
-import { FETCH_RESTAURANTS_HIGH_TO_LOW_COST_URL } from '../constants';
+// import { FETCH_RESTAURANTS_HIGH_TO_LOW_COST_URL } from '../constants';
+import { Outlet } from 'react-router-dom';
 
-function Body() {
-  const [restaurants, carousels, isLoading] = useRestaurants();
+const Body = () => {
+  const [restaurants, carousels, isLoading, sorts] = useRestaurants();
   const [filteredRestaurants, handleSearch, searchText, setSearchText] =
     useSearchFilter();
   // if (!restaurants) return null;
@@ -27,9 +27,13 @@ function Body() {
   }, [restaurants]);
   console.log(restaurantAll, 'ALL---');
 
+  const changeRestaurant = () => {
+    setRestaurantAll(useRestaurantsHighToLow());
+  };
 
-  const [highToLowPrice] = useRestaurantsHighToLow();
-  console.log(highToLowPrice, 'H2L DATA');
+  // const changeRestaurant = () => {
+  //   setRestaurantAll((prevState) => useRestaurantsHighToLow(prevState));
+  // };
 
 
   const isOnline = useOnline();
@@ -49,14 +53,15 @@ function Body() {
         handleSearch={handleSearch}
       />
       <TopImagesCarousel carousels={carousels} isLoading={isLoading} />
-      <Filter setRestaurants={() => setRestaurantAll(highToLowPrice)} />
-      <RestaurantList
+      <Filter setRestaurants={() => changeRestaurant()} sorts={sorts} />
+      <Outlet />
+      {/* <RestaurantList
         filteredRestaurants={filteredRestaurants}
         restaurants={restaurantAll}
         isLoading={isLoading}
-      />
+      /> */}
     </main>
   );
-}
+};
 
 export default Body;

@@ -44,4 +44,9 @@ module.exports = {
       template: path.join(__dirname, 'src', 'index.html'),
     }),
   ],
+  resolve: {
+    alias: {
+      react: path.resolve('./node_modules/react'),
+    },
+  },
 };
