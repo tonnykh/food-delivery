@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../CartContext';
+import UserContext from '../utils/UserContext';
 
 function Title() {
   return (
@@ -17,6 +18,10 @@ function Header() {
     (sum, product) => sum + product.quantity,
     0
   );
+
+
+  const { user } = useContext(UserContext);
+  console.log(user, "USER");
 
   const handleClick = () => {
     localStorage.clear();
@@ -40,6 +45,7 @@ function Header() {
           <li className="flex items-center gap-2">
             <button>Cart ({productsCount} items)</button>
           </li>
+          {user.name}
           <li>
             <button type="button" onClick={handleClick}>
               {isLogin ? 'Logout' : 'Login'}

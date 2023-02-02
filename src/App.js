@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
 import Body from './components/Body';
@@ -11,15 +11,26 @@ import Login from './components/Login';
 import Help from './components/Help';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import CartProvider from './CartContext';
+import UserContext from './utils/UserContext';
 
 const App = () => {
+  const [user, setUser] = useState({
+    name: 'Tonny',
+    email: 'tonny@gmail.com',
+  });
+
   return (
     <>
-      {/* <CartProvider> */}
-      <Header />
-      <Outlet />
-      <Footer />
-      {/* </CartProvider> */}
+      <UserContext.Provider
+        value={{
+          user: user,
+          setUser: setUser,
+        }}
+      >
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
     </>
   );
 };

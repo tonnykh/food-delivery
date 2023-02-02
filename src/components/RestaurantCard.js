@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { IoIosStar } from 'react-icons/io';
 import { MdLocalOffer } from 'react-icons/md';
 import { IMG_CDN_URL } from '../constants';
+
+import UserContext from '../utils/UserContext';
 
 function RestaurantCard({
   name,
@@ -13,6 +15,8 @@ function RestaurantCard({
   aggregatedDiscountInfo,
 }) {
   const offer = aggregatedDiscountInfo.shortDescriptionList[0].meta;
+
+  const { user } = useContext(UserContext);
 
   return (
     <div className="card max-w-[280px] p-4 hover:cursor-pointer hover:shadow-xl">
@@ -45,9 +49,12 @@ function RestaurantCard({
         <h4 className="font-normal leading-loose">{costForTwoString}</h4>
       </div>
 
-      <div className="store-offer border-t text-gray-lighter py-3">
-        <h4 className="font-normal leading-loose text-sm text-brown-light items-center gap-1">{offer}</h4>
+      <div className="store-offer border-t py-3 text-gray-lighter">
+        <h4 className="items-center gap-1 text-sm font-normal leading-loose text-brown-light">
+          {offer}
+        </h4>
       </div>
+      {user.name}
     </div>
   );
 }

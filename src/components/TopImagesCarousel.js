@@ -17,12 +17,12 @@ function TopImagesCarousel({ isLoading, carousels }) {
       ))} */}
     </div>
   ) : (
-    <div className="top-images-carousel-container flex">
+    <div className="top-images-carousel-container flex h-80 px-16 justify-evenly items-center bg-gray-dark">
 
       {carousels.map(({ data }) => (
         <div key={data.bannerId}>
           <img
-            className="w-64 cursor-pointer transition duration-700 ease-in-out hover:scale-105 hover:overflow-visible"
+            className="w-64 h-64 cursor-pointer transition duration-700 ease-out hover:scale-105 hover:overflow-visible"
             src={TOP_CAROUSEL_IMG_CDN_URL + data.creativeId}
             alt=""
           />
@@ -33,3 +33,13 @@ function TopImagesCarousel({ isLoading, carousels }) {
 }
 
 export default TopImagesCarousel;
+
+
+    // /* width: 1200px; */
+    // height: 340px;
+    // /* margin: 0 auto; */
+    // padding: 0 120px;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    // background-color: black;
