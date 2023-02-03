@@ -24,8 +24,11 @@ const useRestaurantsChange = (sortid) => {
 
   //  const restaurantData = data?.cards[2]?.data?.data?.cards;
 
+  console.log(sortid === undefined, 'SORT ID USE CHANGE________');
   useEffect(() => {
-    sortid === "RELEVANCE" ? fetchRestaurant() : fetchRestaurantChange();
+    sortid === 'RELEVANCE' || sortid === undefined
+      ? fetchRestaurant()
+      : fetchRestaurantChange();
   }, [sortid]);
 
   return restaurantsData;

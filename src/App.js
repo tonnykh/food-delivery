@@ -48,6 +48,10 @@ const appRouter = createBrowserRouter([
         element: <Body />,
         children: [
           {
+            path: '/',
+            element: <RestaurantList />,
+          },
+          {
             path: ':sortid',
             element: <RestaurantList />,
           },
