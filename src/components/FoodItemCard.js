@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { MENU_IMG_CDN_URL } from '../constants';
-import { CartContext } from '../CartContext';
+
+
 
 const FoodItemCard = ({
   id,
@@ -13,8 +14,6 @@ const FoodItemCard = ({
   description,
   isOpened,
 }) => {
-  const cart = useContext(CartContext);
-  const productQuantity = cart.getProductQuantity(id);
 
   return (
     <div
@@ -44,53 +43,21 @@ const FoodItemCard = ({
         {cloudinaryImageId && (
           <img
             src={MENU_IMG_CDN_URL + cloudinaryImageId}
-            // width="118"
-            // height="96"
-            className="h-[96px] w-[118px] rounded-sm"
+            className=" w-[118px] rounded-sm"
           ></img>
         )}
 
-        {productQuantity > 0 ? (
-          <>
-            <button
-              onClick={() => cart.addOneToCart(id)}
-              className="relative -top-6 h-9 w-24 border border-gray-light bg-white"
-            >
-              +
-            </button>
-            <button
-              onClick={() => cart.removeOneFromCart(id)}
-              className="relative -top-6 h-9 w-24 border border-gray-light bg-white"
-            >
-              -
-            </button>
-            <p
-              className="leading-loose"
-              style={{ color: 'red', fontSize: '2rem' }}
-            >
-              {productQuantity}
-            </p>
-            <button
-              onClick={() => cart.deleteFromCart(id)}
-              className="relative -top-6 h-9 w-24 border border-gray-light bg-white"
-            >
-              Delete
-            </button>
-          </>
-        ) : (
-          <button
-            className={
-              (isOpened
-                ? 'text-green relative -top-6 h-9 w-24 border border-gray-light bg-white'
-                : null) +
-              ' ' +
-              (!cloudinaryImageId && 'no-image top-8 right-2')
-            }
-            onClick={() => cart.addOneToCart(id)}
-          >
-            {isOpened ? 'ADD' : 'Unavailable'}
-          </button>
-        )}
+        <button
+          className={
+            (isOpened
+              ? 'text-green relative -top-6 h-9 w-24 border border-gray-light bg-white'
+              : null) +
+            ' ' +
+            (!cloudinaryImageId && 'no-image top-8 right-2')
+          }
+        >
+          {isOpened ? 'ADD' : 'Unavailable'}
+        </button>
       </div>
     </div>
   );

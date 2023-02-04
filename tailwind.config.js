@@ -12,6 +12,7 @@ module.exports = {
       'brown-light': 'hsl(12, 30%, 42%)',
       'blue-light': 'hsla(203, 58%, 15%, 0.051)',
       white: 'rgb(255 255 255)',
+      'green': 'rgb(95,178,70)',
     },
     fontWeight: {
       normal: '400',

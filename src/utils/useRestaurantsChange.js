@@ -15,20 +15,17 @@ const useRestaurantsChange = (sortid) => {
     setRestaurantsData(restaurantsData);
   }
 
-  async function fetchRestaurant() {
-    const response = await fetch(FETCH_RESTAURANTS_URL + PAGE_TYPE);
-    const { data } = await response.json();
-    const restaurantData = data?.cards[2]?.data?.data?.cards;
-    setRestaurantsData(restaurantData);
-  }
+  // async function fetchRestaurant() {
+  //   const response = await fetch(FETCH_RESTAURANTS_URL + PAGE_TYPE);
+  //   const { data } = await response.json();
+  //   const restaurantData = data?.cards[2]?.data?.data?.cards;
+  //   setRestaurantsData(restaurantData);
+  // }
 
-  //  const restaurantData = data?.cards[2]?.data?.data?.cards;
 
   console.log(sortid === undefined, 'SORT ID USE CHANGE________');
   useEffect(() => {
-    sortid === 'RELEVANCE' || sortid === undefined
-      ? fetchRestaurant()
-      : fetchRestaurantChange();
+    fetchRestaurantChange();
   }, [sortid]);
 
   return restaurantsData;

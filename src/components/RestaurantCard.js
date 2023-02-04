@@ -1,8 +1,5 @@
 import React, { useContext } from 'react';
-import { IoIosStar } from 'react-icons/io';
-import { MdLocalOffer } from 'react-icons/md';
 import { IMG_CDN_URL } from '../constants';
-
 import UserContext from '../utils/UserContext';
 
 function RestaurantCard({

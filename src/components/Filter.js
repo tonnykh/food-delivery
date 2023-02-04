@@ -6,7 +6,7 @@ const SortBy = ({ title }) => {
   return <p className="text-sm text-gray-light">{title}</p>;
 };
 
-const Filter = ({ setRestaurants, sorts }) => {
+const Filter = ({ setRestaurants, sorts,  }) => {
   const { user, setUser } = useContext(UserContext);
 
   console.log(sorts, 'FILTER SORTS');
@@ -15,8 +15,11 @@ const Filter = ({ setRestaurants, sorts }) => {
     <div className="filter-container sticky top-20 flex h-16 items-center border border-gray-lighter	bg-white	shadow-sm">
       <div className="filter-category my-0 mx-auto flex max-w-6xl items-center gap-12">
         {sorts.map((sort) => (
-          <Link to={sort?.key} key={sort?.key} >
-            <SortBy title={sort?.title} />
+          <Link to={sort?.key} key={sort?.key}>
+            <SortBy
+              title={sort?.title}
+             
+            />
           </Link>
         ))}
 

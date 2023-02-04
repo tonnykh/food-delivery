@@ -4,10 +4,10 @@ import ShimmerRestaurantCard from './ShimmerRestaurantCard';
 import RestaurantCard from './RestaurantCard';
 import { useRestaurantsChange, useRestaurants } from '../utils';
 
-function RestaurantList() {
-  const { sortid } = useParams();
-  console.log(sortid, 'SORTID_+_+');
-  const restaurants = useRestaurantsChange(sortid);
+function RestaurantList({restaurants}) {
+  // const { sortid } = useParams();
+  // console.log(sortid, 'SORTID_+_+');
+  // const restaurants = useRestaurantsChange(sortid);
 
   // if (filteredRestaurants.length === 0) return [];
   // console.log(filteredRestaurants, "FILTERED REST");

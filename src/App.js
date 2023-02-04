@@ -14,6 +14,8 @@ import CartProvider from './CartContext';
 import UserContext from './utils/UserContext';
 import Test from './components/Test';
 import RestaurantList from './components/RestaurantList';
+import { Provider } from 'react-redux';
+import store from './utils/store';
 
 const App = () => {
   const [user, setUser] = useState({
@@ -22,7 +24,7 @@ const App = () => {
   });
 
   return (
-    <>
+    <Provider store={store}>
       <UserContext.Provider
         value={{
           user: user,
@@ -33,7 +35,7 @@ const App = () => {
         <Outlet />
         <Footer />
       </UserContext.Provider>
-    </>
+    </Provider>
   );
 };
 

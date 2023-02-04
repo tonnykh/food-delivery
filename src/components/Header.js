@@ -2,16 +2,22 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../CartContext';
 import UserContext from '../utils/UserContext';
+import { useSelector } from 'react-redux';
 
 function Title() {
   return (
     <h1 className="text-3xl text-gray-dark">
-      <Link to={"/"}>Food Villa</Link>
+      <Link to={'/'}>Food Villa</Link>
     </h1>
   );
 }
 
 function Header() {
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems, 'CarTA');
+
+  console.log(cartItems, "CArT Items");
+
   const [isLogin, setIsLogin] = useState(true);
   const cart = useContext(CartContext);
   const productsCount = cart?.items.reduce(
@@ -19,9 +25,8 @@ function Header() {
     0
   );
 
-
   const { user } = useContext(UserContext);
-  console.log(user, "USER");
+  console.log(user, 'USER');
 
   const handleClick = () => {
     localStorage.clear();
@@ -43,7 +48,10 @@ function Header() {
           </li>
           <li className="flex items-center gap-2">Sign In</li>
           <li className="flex items-center gap-2">
-            <button>Cart ({productsCount} items)</button>
+            <button>
+              Cart items - 
+              {cartItems.length}
+            </button>
           </li>
           {user.name}
           <li>
