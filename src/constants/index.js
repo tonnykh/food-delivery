@@ -28,5 +28,8 @@ export const FETCH_MENU_URL =
 export const EMPTY_CART_IMG_CDN_URL =
   'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_480/Cart_empty_-_menu_2x_ejjkf2';
 
-  export const EMPTY_CART_IMG_COLOR_CDN_URL =
-    'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0';
+export const EMPTY_CART_IMG_COLOR_CDN_URL =
+  'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0';
+
+export const IMG_LOGIN_URL =
+  'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_147,h_140/Image-login_btpq7r';
