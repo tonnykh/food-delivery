@@ -1,6 +1,7 @@
 import React from 'react';
 import { MENU_IMG_CDN_URL } from '../constants';
-
+import { useDispatch } from 'react-redux';
+import { addItem } from '../utils/cartSlice';
 
 
 const FoodItemCard = ({
@@ -13,7 +14,13 @@ const FoodItemCard = ({
   defaultPrice,
   description,
   isOpened,
+  item
 }) => {
+
+  const dispatch = useDispatch();
+  const addFoodItem = (item) => {
+    dispatch(addItem(item));
+  }
 
   return (
     <div
@@ -55,6 +62,8 @@ const FoodItemCard = ({
             ' ' +
             (!cloudinaryImageId && 'no-image top-8 right-2')
           }
+
+          onClick={() => addFoodItem(item)}
         >
           {isOpened ? 'ADD' : 'Unavailable'}
         </button>

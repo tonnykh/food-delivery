@@ -16,8 +16,6 @@ function Header() {
   const cartItems = useSelector((store) => store.cart.items);
   console.log(cartItems, 'CarTA');
 
-  console.log(cartItems, "CArT Items");
-
   const [isLogin, setIsLogin] = useState(true);
   const cart = useContext(CartContext);
   const productsCount = cart?.items.reduce(
@@ -48,10 +46,9 @@ function Header() {
           </li>
           <li className="flex items-center gap-2">Sign In</li>
           <li className="flex items-center gap-2">
-            <button>
-              Cart items - 
-              {cartItems.length}
-            </button>
+            <Link to="/cart">
+              <button>Cart items -{cartItems.length}</button>
+            </Link>
           </li>
           {user.name}
           <li>

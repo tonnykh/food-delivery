@@ -20,6 +20,7 @@ const MenuCenterList = ({ categories, menu, availability }) => {
             {filterItemByCategory(menu, category).map((item) => (
               <FoodItemCard
                 {...item}
+                item={item}
                 isOpened={availability?.opened}
                 key={item.id}
               ></FoodItemCard>
