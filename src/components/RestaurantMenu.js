@@ -20,6 +20,8 @@ function RestaurantMenu() {
     ...new Set(Object.values(menuItems).map((item) => item.category)),
   ];
 
+  console.log(menu, "MENU REST");
+
   return (
     <main className="menu">
       <MenuHeader>
@@ -36,6 +38,7 @@ function RestaurantMenu() {
           categories={categories}
           availability={menu?.availability}
           menu={menuItems}
+          restaurantDetails={menu}
         />
         <MenuRightCart />
       </MenuBody>

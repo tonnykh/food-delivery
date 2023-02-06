@@ -5,7 +5,16 @@ const filterItemByCategory = (menu, category) => {
   return Object.values(menu).filter((item) => item?.category === category);
 };
 
-const MenuCenterList = ({ categories, menu, availability }) => {
+const MenuCenterList = ({
+  categories,
+  menu,
+  availability,
+  restaurantDetails,
+}) => {
+
+
+  console.log(restaurantDetails, "REST CENTER");
+
   return (
     <div className="menu-list w-[538px]">
       {categories.map((category) => (
@@ -23,6 +32,7 @@ const MenuCenterList = ({ categories, menu, availability }) => {
                 item={item}
                 isOpened={availability?.opened}
                 key={item.id}
+                restaurantDetails={restaurantDetails}
               ></FoodItemCard>
             ))}
           </div>

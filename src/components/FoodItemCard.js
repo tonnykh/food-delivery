@@ -1,8 +1,7 @@
 import React from 'react';
 import { MENU_IMG_CDN_URL } from '../constants';
 import { useDispatch } from 'react-redux';
-import { addItem } from '../utils/cartSlice';
-
+import { addItem, addRestaurant } from '../utils/cartSlice';
 
 const FoodItemCard = ({
   id,
@@ -14,13 +13,33 @@ const FoodItemCard = ({
   defaultPrice,
   description,
   isOpened,
-  item
+  item,
+  area,
+  restaurantDetails,
 }) => {
+  // console.log(restaurantDetails, 'CARD');
+  const restaurant = {
+    name: restaurantDetails.name,
+    cloudinaryImageId: restaurantDetails.cloudinaryImageId,
+    area: restaurantDetails.area,
+  };
 
   const dispatch = useDispatch();
-  const addFoodItem = (item) => {
+  const addFoodItem = (item, restaurant) => {
     dispatch(addItem(item));
-  }
+    // addOneRestaurant(restaurant);
+    dispatch(addRestaurant(restaurant));
+  };
+
+  // const restaurant = {
+  //   name: name,
+  //   cloudinaryImageId: cloudinaryImageId,
+  //   area: area,
+  // };
+
+  // const addOneRestaurant = (restaurant) => {
+  //   addRestaurant(restaurant);
+  // };
 
   return (
     <div
@@ -57,13 +76,12 @@ const FoodItemCard = ({
         <button
           className={
             (isOpened
-              ? 'text-green relative -top-6 h-9 w-24 border border-gray-light bg-white'
+              ? 'relative -top-6 h-9 w-24 border border-gray-light bg-white text-green'
               : null) +
             ' ' +
             (!cloudinaryImageId && 'no-image top-8 right-2')
           }
-
-          onClick={() => addFoodItem(item)}
+          onClick={() => addFoodItem(item, restaurant)}
         >
           {isOpened ? 'ADD' : 'Unavailable'}
         </button>

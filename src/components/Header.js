@@ -16,12 +16,21 @@ function Header() {
   const cartItems = useSelector((store) => store.cart.items);
   console.log(cartItems, 'CarTA');
 
-  const [isLogin, setIsLogin] = useState(true);
-  const cart = useContext(CartContext);
-  const productsCount = cart?.items.reduce(
-    (sum, product) => sum + product.quantity,
-    0
+  const cartTotalQuantity = useSelector((store) =>
+    store.cart.items.reduce(
+      (acc, itemWithQuantity) => acc + itemWithQuantity.quantity,
+      0
+    )
   );
+
+  console.log(cartTotalQuantity, 'CarTA QUANTITY');
+
+  const [isLogin, setIsLogin] = useState(true);
+  // const cart = useContext(CartContext);
+  // const productsCount = cart?.items.reduce(
+  //   (sum, product) => sum + product.quantity,
+  //   0
+  // );
 
   const { user } = useContext(UserContext);
   console.log(user, 'USER');
@@ -47,7 +56,7 @@ function Header() {
           <li className="flex items-center gap-2">Sign In</li>
           <li className="flex items-center gap-2">
             <Link to="/cart">
-              <button>Cart items -{cartItems.length}</button>
+              <button>Cart items - {cartTotalQuantity}</button>
             </Link>
           </li>
           {user.name}
