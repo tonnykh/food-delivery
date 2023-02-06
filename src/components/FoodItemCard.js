@@ -1,7 +1,8 @@
 import React from 'react';
 import { MENU_IMG_CDN_URL } from '../constants';
 import { useDispatch } from 'react-redux';
-import { addItem, addRestaurant } from '../utils/cartSlice';
+import { addItem, addRestaurant, removeItem } from '../utils/cartSlice';
+import { useSelector } from 'react-redux';
 
 const FoodItemCard = ({
   id,
@@ -13,8 +14,7 @@ const FoodItemCard = ({
   defaultPrice,
   description,
   isOpened,
-  item,
-  area,
+  foodItem,
   restaurantDetails,
 }) => {
   // console.log(restaurantDetails, 'CARD');
@@ -25,21 +25,29 @@ const FoodItemCard = ({
   };
 
   const dispatch = useDispatch();
-  const addFoodItem = (item, restaurant) => {
-    dispatch(addItem(item));
-    // addOneRestaurant(restaurant);
+  const addOneWithRestaurant = (foodItem, restaurant) => {
+    dispatch(addItem(foodItem));
     dispatch(addRestaurant(restaurant));
   };
 
-  // const restaurant = {
-  //   name: name,
-  //   cloudinaryImageId: cloudinaryImageId,
-  //   area: area,
-  // };
+  const addOne = (foodItem) => {
+    dispatch(addItem(foodItem));
+  };
 
-  // const addOneRestaurant = (restaurant) => {
-  //   addRestaurant(restaurant);
-  // };
+  const removeOne = (foodItem) => {
+    dispatch(removeItem(foodItem));
+  };
+
+  // const count = useSelector((store) => store.cart.items.length);
+  // console.log(count, "COUNT");
+
+  const foodItems = useSelector((store) => store.cart.items);
+  const foodQuantity = foodItems.find(
+    (itemWithQuantity) => itemWithQuantity.item.id === id
+  )?.quantity;
+  console.log(foodQuantity, 'FOOD QUANTITY', name, id);
+
+
 
   return (
     <div
@@ -65,7 +73,7 @@ const FoodItemCard = ({
           {description}
         </div>
       </div>
-      <div className="restaurant-menu-item-right flex flex-col items-center pl-6">
+      <div className="restaurant-menu-item-right relative flex flex-col items-center pl-6">
         {cloudinaryImageId && (
           <img
             src={MENU_IMG_CDN_URL + cloudinaryImageId}
@@ -73,18 +81,39 @@ const FoodItemCard = ({
           ></img>
         )}
 
-        <button
-          className={
-            (isOpened
-              ? 'relative -top-6 h-9 w-24 border border-gray-light bg-white text-green'
-              : null) +
-            ' ' +
-            (!cloudinaryImageId && 'no-image top-8 right-2')
-          }
-          onClick={() => addFoodItem(item, restaurant)}
-        >
-          {isOpened ? 'ADD' : 'Unavailable'}
-        </button>
+        {foodQuantity === undefined ? (
+          <button
+            className={
+              (isOpened
+                ? 'relative -top-6 h-9 w-24 border border-gray-lighter bg-white text-green'
+                : null) +
+              ' ' +
+              (!cloudinaryImageId && 'no-image top-8 right-2')
+            }
+            onClick={() => addOneWithRestaurant(foodItem, restaurant)}
+          >
+            {isOpened ? 'ADD' : 'Unavailable'}
+          </button>
+        ) : (
+          <div
+            className={
+              'relative -top-6 flex w-24 justify-evenly border border-gray-lighter bg-white text-sm font-bold text-green' +
+              ' ' +
+              (!cloudinaryImageId && 'no-image top-8 right-2')
+            }
+          >
+            <button
+              className="p-2 text-gray-light"
+              onClick={() => removeOne(foodItem)}
+            >
+              -
+            </button>
+            <button className="p-2">{foodQuantity}</button>
+            <button className="p-2" onClick={() => addOne(foodItem)}>
+              +
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
