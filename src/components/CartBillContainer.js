@@ -18,7 +18,7 @@ const CartBillDetails = () => {
   const totalFoodCost = useSelector((store) => store.cart.totalCost);
 
   return (
-    <div className="mx-7 mt-4 border-b-2 border-gray-dark">
+    <div className="mt-4 border-b-2 border-gray-dark">
       <div className="mb-2 text-sm font-bold text-gray-dark">Bill Details</div>
       <div className="my-3 flex justify-between text-xs text-gray-light">
         <span>Item Total</span>
@@ -47,7 +47,7 @@ const CartFoodItemsAndBillDetails = () => {
 
   return (
     <div className="flex max-h-[calc(100vh-270px)]">
-      <div className="-px-7 w-[366px] overflow-auto py-0">
+      <div className="-px-7 w-[366px] overflow-auto mx-7">
         {foodItems.map((foodItem) => {
           return (
             <CartFoodItem

@@ -2,28 +2,28 @@ import React, { useContext } from 'react';
 import { EMPTY_CART_IMG_CDN_URL } from '../constants';
 import { CartContext } from '../CartContext';
 import CartProduct from './CartProduct';
+import { useSelector } from 'react-redux';
+import CartFoodItem from './CartFoodItem';
 
 const MenuRightCart = () => {
-  const cart = useContext(CartContext);
-  const productsCount = cart?.items.reduce(
-    (sum, product) => sum + product.quantity, 0);
+  // const cart = useContext(CartContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
+
+  const cartTotalQuantity = useSelector((store) =>
+    store.cart.items.reduce(
+      (acc, itemWithQuantity) => acc + itemWithQuantity.quantity,
+      0
+    )
+  );
+
+  const totalFoodCost = useSelector((store) => store.cart.totalCost);
+
+  const foodItems = useSelector((store) => store.cart.items);
 
   return (
-    <div className="menu-right-cart w-72 pl-3 pr-3 pt-16 text-gray-light">
-      {productsCount > 0 ? (
-        <>
-          <div className="text-3xl font-bold">Cart</div>
-          <p>{productsCount}ITEM</p>
-          {cart.items.map((currentProduct, id) => (
-            <CartProduct
-              key={id}
-              id={currentProduct.id}
-              quantity={currentProduct.quantity}
-            ></CartProduct>
-          ))}
-          <h1>TOTAL: RS {cart.getTotalCost()}</h1>
-        </>
-      ) : (
+    <div className="menu-right-cart w-80 pl-3 pr-3 pt-16 text-gray-light">
+      {cartItems.length === 0 ? (
         <>
           <div className="text-3xl font-bold">Cart Empty</div>
           <img
@@ -37,6 +37,35 @@ const MenuRightCart = () => {
           >
             Good food is always cooking! Go ahead, order some yummy items from
             the menu.
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="text-3xl font-bold text-gray-dark">Cart</div>
+          <p className="pb-2 text-xs ">{cartTotalQuantity} ITEM</p>
+          <div className="relative -left-3 z-10 w-80 border-4 border-white shadow-[0px_2px_4px_-3px_#33333375]"></div>
+          <div className="max-h-[calc(100vh-270px)] overflow-y-auto py-2">
+            {foodItems.map((foodItem) => {
+              return (
+                <CartFoodItem
+                  {...foodItem.item}
+                  key={foodItem.item.id}
+                  count={foodItem.quantity}
+                  foodItem={foodItem}
+                />
+              );
+            })}
+          </div>
+          <div>
+            <div className="relative -left-3 z-10 w-80 border-4 border-white shadow-[0px_-2px_4px_-3px_#33333375]"></div>
+            <div className="flex justify-between pt-2 text-base font-bold text-gray-dark">
+              <span>Subtotal </span>
+              <span>Rs {totalFoodCost}</span>
+            </div>
+            <div className="text-xs font-normal">Extra charges may apply</div>
+            <button className="m-auto mt-7 block h-12 w-full cursor-pointer bg-green text-center text-base font-bold text-white ">
+              CHECKOUT →
+            </button>
           </div>
         </>
       )}

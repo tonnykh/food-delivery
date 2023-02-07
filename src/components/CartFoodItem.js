@@ -16,11 +16,11 @@ const CartFoodItem = ({ name, price, count, foodItem }) => {
 
 
   return (
-    <div className="my-0 mx-4 py-0 px-4">
+    // <div className="my-0 mx-4 py-0 px-4">
       <div className="flex items-center py-2">
         <div className="mr-4 w-[129px] text-sm font-normal">{name}</div>
-        <div className="flex w-28 flex-grow items-center justify-between">
-          <div className="flex border border-gray-lighter text-sm font-bold text-green">
+        <div className="flex w-20 flex-grow items-center justify-between">
+          <div className="flex border border-gray-lighter text-sm font-bold text-green ml-4">
             <button className="p-2 text-gray-light" onClick={() => removeOne(foodItem)}>-</button>
             <button className="p-2">{count}</button>
             <button className="p-2" onClick={() => addOne(foodItem)}>+</button>
@@ -28,7 +28,7 @@ const CartFoodItem = ({ name, price, count, foodItem }) => {
           <div className="text-xs text-gray-light">Rs {price * count / 100}</div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 
