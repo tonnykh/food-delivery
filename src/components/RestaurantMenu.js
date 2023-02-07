@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMenu } from '../utils';
 import MenuHeader from './MenuHeader';
@@ -11,6 +11,8 @@ import MenuCenterList from './MenuCenterList';
 import MenuRightCart from './MenuRightCart';
 
 function RestaurantMenu() {
+  const [vegMenu, setVegMenu] = useState(false);
+
   const { restid } = useParams();
   const menu = useMenu(restid);
   const menuItems = menu?.menu?.items;
@@ -20,13 +22,20 @@ function RestaurantMenu() {
     ...new Set(Object.values(menuItems).map((item) => item.category)),
   ];
 
-  console.log(menu, "MENU REST");
+  console.log(menu, 'MENU REST');
+
+  console.log(vegMenu, 'MENU VEG SET');
+
+  const handleVegMenu = () => {
+    setVegMenu(!vegMenu);
+    console.log('CLICK');
+  };
 
   return (
     <main className="menu">
       <MenuHeader>
         <RestaurantImage cloudinaryImageId={menu.cloudinaryImageId} />
-        <RestaurantInfo {...menu} />
+        <RestaurantInfo {...menu} handleVegMenu={handleVegMenu} isVegMenu={vegMenu} />
         <RestaurantOffer
           aggregatedDiscountInfoV2={menu.aggregatedDiscountInfoV2}
         />
@@ -39,6 +48,7 @@ function RestaurantMenu() {
           availability={menu?.availability}
           menu={menuItems}
           restaurantDetails={menu}
+          isVegMenu={vegMenu}
         />
         <MenuRightCart />
       </MenuBody>

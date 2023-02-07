@@ -45,7 +45,6 @@ const FoodItemCard = ({
   const foodQuantity = foodItems.find(
     (itemWithQuantity) => itemWithQuantity.item.id === id
   )?.quantity;
-  console.log(foodQuantity, 'FOOD QUANTITY', name, id);
 
 
 

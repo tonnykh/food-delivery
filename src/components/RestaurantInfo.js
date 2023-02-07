@@ -16,7 +16,15 @@ function RestaurantInfo({
   sla,
   costForTwoMsg,
   menu,
+  isVegMenu,
+  handleVegMenu,
 }) {
+
+  // const onClick = () => {
+    console.log(isVegMenu, 'VEG IS MENU_+_+_+');
+  // }
+
+
   return (
     <div className="restaurant-info w-[538px]">
       <h1 className="text-3xl font-normal text-white">{name}</h1>
@@ -53,10 +61,10 @@ function RestaurantInfo({
             placeholder="Search for dishes.."
           />
         </div>
-        <div className="flex h-10  gap-2 bg-white px-4 text-sm font-bold text-gray-dark shadow-sm items-center">
-          <MdCheckBoxOutlineBlank />
+        <button className="flex h-10  gap-2 bg-white px-4 text-sm font-bold text-gray-dark shadow-sm items-center hover:text-green" onClick={handleVegMenu} >
+          <MdCheckBoxOutlineBlank className={isVegMenu ? 'bg-green text-green' : ''} />
           Veg Only
-        </div>
+        </button>
         <div className="flex h-10 gap-2 bg-white px-4 text-sm font-bold text-gray-dark shadow-sm items-center">
           <MdOutlineFavoriteBorder />
           Favourite

@@ -1,13 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { EMPTY_CART_IMG_CDN_URL } from '../constants';
-import { CartContext } from '../CartContext';
-import CartProduct from './CartProduct';
 import { useSelector } from 'react-redux';
 import CartFoodItem from './CartFoodItem';
+import { Link } from 'react-router-dom';
 
 const MenuRightCart = () => {
-  // const cart = useContext(CartContext);
-
   const cartItems = useSelector((store) => store.cart.items);
 
   const cartTotalQuantity = useSelector((store) =>
@@ -42,7 +39,9 @@ const MenuRightCart = () => {
       ) : (
         <>
           <div className="text-3xl font-bold text-gray-dark">Cart</div>
-          <p className="pb-2 text-xs ">{cartTotalQuantity} ITEM</p>
+          <p className="pb-2 text-xs ">
+            {cartTotalQuantity} {cartTotalQuantity > 1 ? 'ITEMS' : 'ITEM'}
+          </p>
           <div className="relative -left-3 z-10 w-80 border-4 border-white shadow-[0px_2px_4px_-3px_#33333375]"></div>
           <div className="max-h-[calc(100vh-270px)] overflow-y-auto py-2">
             {foodItems.map((foodItem) => {
@@ -63,9 +62,11 @@ const MenuRightCart = () => {
               <span>Rs {totalFoodCost}</span>
             </div>
             <div className="text-xs font-normal">Extra charges may apply</div>
-            <button className="m-auto mt-7 block h-12 w-full cursor-pointer bg-green text-center text-base font-bold text-white ">
-              CHECKOUT →
-            </button>
+            <Link to={'/cart'}>
+              <button className="m-auto mt-7 block h-12 w-full cursor-pointer bg-green text-center text-base font-bold text-white ">
+                CHECKOUT →
+              </button>
+            </Link>
           </div>
         </>
       )}

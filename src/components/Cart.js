@@ -2,6 +2,7 @@ import React from 'react';
 import { EMPTY_CART_IMG_COLOR_CDN_URL, IMG_LOGIN_URL } from '../constants';
 import { useSelector } from 'react-redux';
 import CartBillContainer from './CartBillContainer';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -17,9 +18,11 @@ const Cart = () => {
           <div className="mt-2 text-sm text-gray-light">
             You can go to home page to view more restaurants
           </div>
-          <button className="mt-8 cursor-pointer bg-gray-dark py-3 px-5 text-sm font-bold text-white">
-            SEE RESTAURANTS NEAR YOU
-          </button>
+          <Link to={'/'}>
+            <button className="mt-8 cursor-pointer bg-gray-dark py-3 px-5 text-sm font-bold text-white">
+              SEE RESTAURANTS NEAR YOU
+            </button>
+          </Link>
         </div>
       ) : (
         <div className="overflow-auto bg-gray-lighter">
