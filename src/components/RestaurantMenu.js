@@ -35,23 +35,27 @@ function RestaurantMenu() {
     <main className="menu">
       <MenuHeader>
         <RestaurantImage cloudinaryImageId={menu.cloudinaryImageId} />
-        <RestaurantInfo {...menu} handleVegMenu={handleVegMenu} isVegMenu={vegMenu} />
+        <RestaurantInfo
+          {...menu}
+          handleVegMenu={handleVegMenu}
+          isVegMenu={vegMenu}
+        />
         <RestaurantOffer
           aggregatedDiscountInfoV2={menu.aggregatedDiscountInfoV2}
         />
       </MenuHeader>
 
-      <MenuBody>
-        <MenuLeftFilter categories={categories} />
-        <MenuCenterList
-          categories={categories}
-          availability={menu?.availability}
-          menu={menuItems}
-          restaurantDetails={menu}
-          isVegMenu={vegMenu}
-        />
-        <MenuRightCart />
-      </MenuBody>
+        <MenuBody>
+          <MenuLeftFilter categories={categories} />
+          <MenuCenterList
+            categories={categories}
+            availability={menu?.availability}
+            menu={menuItems}
+            restaurantDetails={menu}
+            isVegMenu={vegMenu}
+          />
+          <MenuRightCart />
+        </MenuBody>
     </main>
   );
 }

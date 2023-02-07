@@ -61,11 +61,11 @@ const FoodItemCard = ({
             {isBestSeller ? 'Bestseller' : null}
           </span>
         </div>
-        <h3>{name}</h3>
+        <h3 className='font-bold '>{name}</h3>
         {price == 0 ? (
           <p className=" leading-loose">Rs {defaultPrice / 100}</p>
         ) : (
-          <p>Rs {price / 100}</p>
+            <p className='text-sm font-normal'>Rs {price / 100}</p>
         )}
 
         <div className="description pt-3 text-xs font-normal text-gray-light">

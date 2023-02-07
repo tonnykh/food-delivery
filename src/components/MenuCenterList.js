@@ -22,14 +22,12 @@ const MenuCenterList = ({
   const vegMenu = Object.values(menu).filter((item) => item.isVeg);
   console.log(vegMenu, 'MENU VEGETARIAN LIST');
 
-  // const nonVegMenu = Object.values(menu).filter((item) => item.isVeg === 0);
-  // console.log(nonVegMenu, 'MENU NON-VEGETARIAN LIST');
 
   return (
     <div className="menu-list w-[538px]">
       {categories.map((category) => (
         <div key={category} className="border-b-2 border-gray-dark">
-          <h2 id={category} className="pt-16 text-xl">
+          <h2 id={category} className="pt-20 text-xl font-bold">
             {category}
           </h2>
           <div className="number-of-item text-xs font-bold leading-loose text-gray-light">

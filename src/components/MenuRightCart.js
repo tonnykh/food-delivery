@@ -19,7 +19,7 @@ const MenuRightCart = () => {
   const foodItems = useSelector((store) => store.cart.items);
 
   return (
-    <div className="menu-right-cart w-80 pl-3 pr-3 pt-16 text-gray-light">
+    <div className="menu-right-cart w-80 pl-3 pr-3 pt-20 text-gray-light">
       {cartItems.length === 0 ? (
         <>
           <div className="text-3xl font-bold">Cart Empty</div>
