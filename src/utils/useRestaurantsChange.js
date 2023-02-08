@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import { FETCH_RESTAURANTS_URL, PAGE_TYPE } from '../constants';
 // import { FETCH_RESTAURANTS_HIGH_TO_LOW_COST_URL } from '../constants';
 
-const useRestaurantsChange = (sortid) => {
+const useRestaurantsChange = (key) => {
+  console.log(key, 'SORT ID USE CHANGE________');
+
   const [restaurantsData, setRestaurantsData] = useState([]);
 
   async function fetchRestaurantChange() {
     const response = await fetch(
-      FETCH_RESTAURANTS_URL + 'sortBy=' + sortid + '&' + PAGE_TYPE
+      FETCH_RESTAURANTS_URL + 'sortBy=' + key + '&' + PAGE_TYPE
     );
     const { data } = await response.json();
     console.log(data, 'CHANGE DATA');
@@ -22,11 +24,9 @@ const useRestaurantsChange = (sortid) => {
   //   setRestaurantsData(restaurantData);
   // }
 
-
-  console.log(sortid === undefined, 'SORT ID USE CHANGE________');
   useEffect(() => {
     fetchRestaurantChange();
-  }, [sortid]);
+  }, [key]);
 
   return restaurantsData;
 };

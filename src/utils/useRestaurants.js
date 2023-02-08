@@ -5,7 +5,7 @@ const useRestaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [carousels, setCarousels] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [sorts, setSorts] = useState([]);
+  const [mainCategories, setMainCategories] = useState([]);
 
   async function fetchRestaurant() {
     const response = await fetch(FETCH_RESTAURANTS_URL + PAGE_TYPE);
@@ -13,11 +13,11 @@ const useRestaurants = () => {
     console.log(data?.sorts, "DATA CALL 1st");
     const restaurantData = data?.cards[2]?.data?.data?.cards;
     const carouselsData = data?.cards[0]?.data?.data?.cards;
-    const sorts = data?.sorts;
+    const mainCategories = data?.sorts;
     setRestaurants(restaurantData);
     setCarousels(carouselsData);
     setIsLoading(false);
-    setSorts(sorts);
+    setMainCategories(mainCategories);
   }
 
   useEffect(() => {
@@ -25,8 +25,8 @@ const useRestaurants = () => {
   }, []);
 
 
-  console.log(sorts, "SORTS DATA");
-  return [restaurants, carousels, isLoading, sorts];
+  console.log(mainCategories, 'SORTS DATA');
+  return [restaurants, carousels, isLoading, mainCategories];
 };
 
 export default useRestaurants;
