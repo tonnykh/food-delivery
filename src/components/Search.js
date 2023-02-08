@@ -1,30 +1,41 @@
 import React from 'react';
 import { MdSearch } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { handleSearchInput } from '../utils/searchSlice';
+import { useSelector } from 'react-redux';
 
-const Search = ({ searchText, handleSearch, setSearchText }) => {
+const Search = () => {
+  const dispatch = useDispatch();
+
+  const filterSearchText = (input) => {
+    dispatch(handleSearchInput(input));
+  };
+
+  const searchText = useSelector((store) => store.search.searchInput);
+
+  console.log(searchText, 'SEARCH');
+
   return (
-    <div className="search-container bg-white sticky top-20 z-20">
-      <form className="absolute -top-[59px] left-[30%] flex">
-        <input
-          type="text"
-          className="search-input bg-blue-light w-72 rounded-md py-3 px-6 text-sm backdrop-blur-sm backdrop-saturate-50 placeholder:text-gray-light"
-          placeholder="Search restaurant.."
-          value={searchText}
-          onChange={(e) => {
-            console.log(e.target.value);
-            setSearchText(e.target.value);
-          }}
-        />
-        <button
-          className="search-btn inline-flex text-xl p-1 items-center relative right-11 text-gray-light"
-          onClick={(e) => {
-            handleSearch(e);
-          }}
-        >
-          <MdSearch />
-        </button>
-      </form>
-    </div>
+    <form className="flex">
+      <input
+        type="text"
+        className="search-input w-72 rounded-md bg-blue-light py-3 px-6 text-sm backdrop-blur-sm backdrop-saturate-50 placeholder:text-gray-light"
+        placeholder="Search restaurant.."
+        value={searchText}
+        onChange={(e) => {
+          console.log(e.target.value, 'TARGET ON CHANGE');
+          filterSearchText(e.target.value);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+          }
+        }}
+      />
+      <div className="search-btn relative right-11 inline-flex items-center p-1 text-xl text-gray-light">
+        <MdSearch />
+      </div>
+    </form>
   );
 };
 

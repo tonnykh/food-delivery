@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../CartContext';
 import UserContext from '../utils/UserContext';
 import { useSelector } from 'react-redux';
+import Search from './Search';
+
 
 function Title() {
   return (
@@ -13,6 +15,10 @@ function Title() {
 }
 
 function Header() {
+  const [searchText, setSearchText] = useState('');
+
+
+
   const cartItems = useSelector((store) => store.cart.items);
   console.log(cartItems, 'CarTA');
 
@@ -26,11 +32,6 @@ function Header() {
   console.log(cartTotalQuantity, 'CarTA QUANTITY');
 
   const [isLogin, setIsLogin] = useState(true);
-  // const cart = useContext(CartContext);
-  // const productsCount = cart?.items.reduce(
-  //   (sum, product) => sum + product.quantity,
-  //   0
-  // );
 
   const { user } = useContext(UserContext);
   console.log(user, 'USER');
@@ -41,10 +42,16 @@ function Header() {
     setIsLogin(!isLogin);
   };
 
+
+    console.log(searchText, 'SEARCH TEXT');
+
+  
   return (
     <header className="header sticky top-0 z-20 border border-gray-lighter bg-gray-semi-transparent backdrop-blur-sm backdrop-saturate-50">
       <div className="header-container my-0 mx-auto flex h-20 max-w-screen-xl items-center justify-between">
         <Title />
+
+        <Search searchText={searchText} setSearchText={setSearchText} />
 
         <ul className="navbar flex gap-16 text-sm font-bold text-gray-dark">
           <li className="flex items-center gap-2">
