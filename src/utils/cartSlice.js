@@ -8,7 +8,6 @@ const cartSlice = createSlice({
     restaurant: [],
   },
   reducers: {
-    
     addItem: (state, action) => {
       let itemFound = false;
       state.items.forEach((itemWithQuantity) => {
@@ -20,7 +19,7 @@ const cartSlice = createSlice({
       if (!itemFound) {
         state.items.push({ item: action.payload, quantity: 1 });
       }
-      state.totalCost += action.payload.price / 100;
+      state.totalCost += action.payload.price;
     },
 
     removeItem: (state, action) => {

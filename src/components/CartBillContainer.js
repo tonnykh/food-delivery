@@ -9,7 +9,7 @@ const CartTotalAmount = () => {
   return (
     <div className="flex h-14 justify-between px-8 pt-4 text-sm font-bold shadow-[0px_-1px_4px_-3px_#33333375]">
       <div>TO PAY</div>
-      <div>Rs {totalFoodCost + 60.45}</div>
+      <div>Rs {(totalFoodCost + 60) / 100}</div>
     </div>
   );
 };
@@ -34,7 +34,7 @@ const CartBillDetails = () => {
       <div className="my-4 border-b border-gray-lighter"></div>
       <div className="mb-5 flex justify-between text-xs text-gray-light">
         <span>Govt Taxes & Other Charges</span>
-        <span>Rs 60.45</span>
+        <span>Rs 60</span>
       </div>
       {/* <div className="border-b-2 border-gray-dark"></div> */}
     </div>
@@ -47,7 +47,7 @@ const CartFoodItemsAndBillDetails = () => {
 
   return (
     <div className="flex max-h-[calc(100vh-270px)]">
-      <div className="-px-7 w-[366px] overflow-auto mx-7">
+      <div className="-px-7 mx-7 w-[366px] overflow-auto">
         {foodItems.map((foodItem) => {
           return (
             <CartFoodItem
@@ -66,7 +66,7 @@ const CartFoodItemsAndBillDetails = () => {
 
 const CartRestaurantDetails = () => {
   const restaurant = useSelector((store) => store.cart.restaurant);
-  console.log(restaurant, "CART BILL");
+  console.log(restaurant, 'CART BILL');
   return (
     <button className="flex min-h-[90px] cursor-pointer py-5 px-7 shadow-sm">
       <span className="h-12 w-12">

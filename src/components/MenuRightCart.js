@@ -16,6 +16,8 @@ const MenuRightCart = () => {
 
   const totalFoodCost = useSelector((store) => store.cart.totalCost);
 
+  console.log(totalFoodCost, 'TOTAL COST');
+
   const foodItems = useSelector((store) => store.cart.items);
 
   return (
@@ -59,7 +61,7 @@ const MenuRightCart = () => {
             <div className="relative -left-3 z-10 w-80 border-4 border-white shadow-[0px_-2px_4px_-3px_#33333375]"></div>
             <div className="flex justify-between pt-2 text-base font-bold text-gray-dark">
               <span>Subtotal </span>
-              <span>Rs {totalFoodCost}</span>
+              <span>Rs {totalFoodCost / 100}</span>
             </div>
             <div className="text-xs font-normal">Extra charges may apply</div>
             <Link to={'/cart'}>
