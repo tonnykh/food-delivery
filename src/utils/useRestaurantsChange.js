@@ -8,8 +8,7 @@ const useRestaurantsChange = (key) => {
   const [restaurantsData, setRestaurantsData] = useState([]);
 
   async function fetchRestaurantChange() {
-    const response = await fetch(
-      FETCH_RESTAURANTS_URL + 'sortBy=' + key + '&' + PAGE_TYPE
+    const response = await fetch("https://cors-anywhere.herokuapp.com/" + FETCH_RESTAURANTS_URL + 'sortBy=' + key + '&' + PAGE_TYPE
     );
     const { data } = await response.json();
     console.log(data, 'CHANGE DATA');

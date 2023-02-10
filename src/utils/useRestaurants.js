@@ -8,9 +8,11 @@ const useRestaurants = () => {
   const [mainCategories, setMainCategories] = useState([]);
 
   async function fetchRestaurant() {
-    const response = await fetch(FETCH_RESTAURANTS_URL + PAGE_TYPE);
+    const response = await fetch(
+      'https://cors-anywhere.herokuapp.com/' + FETCH_RESTAURANTS_URL + PAGE_TYPE
+    );
     const { data } = await response.json();
-    console.log(data?.sorts, "DATA CALL 1st");
+    console.log(data?.sorts, 'DATA CALL 1st');
     const restaurantData = data?.cards[2]?.data?.data?.cards;
     const carouselsData = data?.cards[0]?.data?.data?.cards;
     const mainCategories = data?.sorts;
@@ -23,7 +25,6 @@ const useRestaurants = () => {
   useEffect(() => {
     fetchRestaurant();
   }, []);
-
 
   console.log(mainCategories, 'SORTS DATA');
   return [restaurants, carousels, isLoading, mainCategories];
