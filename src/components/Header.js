@@ -8,7 +8,7 @@ import Search from './Search';
 
 function Title() {
   return (
-    <h1 className="text-3xl text-gray-dark">
+    <h1 className="text-3xl text-gray-dark" data-testid="title">
       <Link to={'/'}>Food Villa</Link>
     </h1>
   );
@@ -19,8 +19,8 @@ function Header() {
 
 
 
-  const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems, 'CarTA');
+  // const cartItems = useSelector((store) => store.cart.items);
+  // console.log(cartItems, 'CarTA');
 
   const cartTotalQuantity = useSelector((store) =>
     store.cart.items.reduce(
@@ -63,7 +63,9 @@ function Header() {
           <li className="flex items-center gap-2">Sign In</li>
           <li className="flex items-center gap-2">
             <Link to="/cart">
-              <button>Cart items - {cartTotalQuantity}</button>
+              <button data-testid="cart">
+                Cart items - {cartTotalQuantity}
+              </button>
             </Link>
           </li>
           {user.name}
