@@ -5,13 +5,15 @@ const useMenu = (restid) => {
   const [menu, setMenu] = useState([]);
 
   async function getRestaurantInfo() {
-    const data = await fetch( + FETCH_MENU_URL + restid);
+    const data = await fetch(
+      'https://cors-anywhere.herokuapp.com/' +FETCH_MENU_URL + restid
+    );
     const json = await data.json();
     setMenu(json?.data);
   }
 
   useEffect(() => {
-    getRestaurantInfo();
+    getRestaurantInfo(); 
   }, []);
 
   console.log(menu, 'USE MENU');
