@@ -19,7 +19,7 @@ function TopImagesCarousel({ isLoading, carousels }) {
   ) : (
     <div className="top-images-carousel-container flex h-80 px-16 justify-evenly items-center bg-gray-dark">
 
-      {carousels.map(({ data }) => (
+      {/* {carousels.map(({ data }) => (
         <div key={data.bannerId}>
           <img
             className="w-64 h-64 cursor-pointer transition duration-700 ease-out hover:scale-105 hover:overflow-visible"
@@ -27,7 +27,7 @@ function TopImagesCarousel({ isLoading, carousels }) {
             alt=""
           />
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }
