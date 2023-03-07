@@ -16,9 +16,15 @@ function Title() {
 
 function Header() {
   const [searchText, setSearchText] = useState('');
-  const [toggleLocationSideBar, setToggleLocationSideBar] = useState(false);
+  const [toggleLocationSideBar, setToggleLocationSideBar] = useState(true);
 
-  console.log(toggleLocationSideBar, 'TOGGLE _E _E E');
+  const locationAddress = useSelector(
+    (store) => store.location.locationAddress
+  );
+
+  // const latitude = useSelector((store) => store.location.coordinates.latitude);
+
+  // console.log(latitude, 'ADDRESS latitude ');
 
   // const cartItems = useSelector((store) => store.cart.items);
   // console.log(cartItems, 'CarTA');
@@ -49,10 +55,14 @@ function Header() {
     <header className="header sticky top-0 z-20 border border-gray-lighter bg-gray-semi-transparent backdrop-blur-sm backdrop-saturate-50">
       <div className="header-container my-0 mx-auto flex h-20 max-w-screen-xl items-center justify-between">
         <Title />
-        <button onClick={() => setToggleLocationSideBar(true)}>Location</button>
+        <button onClick={() => setToggleLocationSideBar(true)}>
+          {locationAddress ? locationAddress : 'Location'}
+        </button>
 
         {toggleLocationSideBar && (
-          <LocationSideBar setToggle={() => setToggleLocationSideBar(!toggleLocationSideBar)} />
+          <LocationSideBar
+            setToggle={() => setToggleLocationSideBar(!toggleLocationSideBar)}
+          />
         )}
         <Search searchText={searchText} setSearchText={setSearchText} />
 
