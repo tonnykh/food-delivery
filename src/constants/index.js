@@ -9,7 +9,9 @@
 //  'sortBy=COST_FOR_TWO_H2L&';
 
 export const FETCH_RESTAURANTS_URL =
-  'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5620966&lng=77.2139292&';
+  'https://www.swiggy.com/dapi/restaurants/list/v5?';
+
+// lat = 28.5620966 & lng=77.2139292 & ';
 
 export const PAGE_TYPE = 'page_type=DESKTOP_WEB_LISTING';
 

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { FETCH_RESTAURANTS_URL, PAGE_TYPE } from '../constants';
 
 const useRestaurants = () => {
@@ -6,12 +7,20 @@ const useRestaurants = () => {
   const [carousels, setCarousels] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [mainCategories, setMainCategories] = useState([]);
+  
+
+  // const latitude = useSelector(store, )
 
   async function fetchRestaurant() {
     const response = await fetch(
-       FETCH_RESTAURANTS_URL + PAGE_TYPE
+      FETCH_RESTAURANTS_URL +
+        'lat=' +
+        latitude +
+        '&lng=' +
+        longitude +
+        PAGE_TYPE
     );
-     
+
     const { data } = await response.json();
     // console.log(json.data.cards, '-----DATA CALL 1st');
     const restaurantData = data?.cards[2]?.data?.data?.cards;
