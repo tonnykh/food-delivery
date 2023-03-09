@@ -28,18 +28,21 @@ function RestaurantList({ restaurants }) {
       ? restaurants
       : restaurantsParam
   );
-  console.log(filter, 'FILTERED');
+  console.log(restaurants, 'RESTAURANTS');
 
-  return (
+  return restaurants === undefined ? (
+    <ShimmerRestaurantCard />
+  ) : (
     <div className="restaurant-list my-0 mx-auto flex max-w-7xl flex-wrap gap-8 pt-8 pl-8">
-      {filter && filter.map((restaurant) => (
-        <Link
-          to={`/restaurant/${restaurant?.data?.id}`}
-          key={restaurant?.data?.id}
-        >
-          <RestaurantCard {...restaurant?.data} />
-        </Link>
-      ))}
+      {filter &&
+        filter.map((restaurant) => (
+          <Link
+            to={`/restaurant/${restaurant?.data?.id}`}
+            key={restaurant?.data?.id}
+          >
+            <RestaurantCard {...restaurant?.data} />
+          </Link>
+        ))}
     </div>
   );
 }

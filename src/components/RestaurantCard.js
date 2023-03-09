@@ -32,7 +32,7 @@ function RestaurantCard({
         <div className="star-rating">
           <h4
             className={
-              avgRating > 4
+             avgRating >  4
                 ? 'green text-green flex gap-1 pr-2 pl-1 font-normal leading-loose'
                 : 'orange text-orange font-normal leading-loose'
             }
