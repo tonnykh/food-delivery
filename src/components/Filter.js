@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import UserContext from '../utils/UserContext';
 import { Link } from 'react-router-dom';
 
-const Filter = ({ mainCategories }) => {
+const Filter = ({ mainCategories, setRestaurants }) => {
   const { user, setUser } = useContext(UserContext);
   console.log(mainCategories, 'FILTER SORTS');
+
+  if (mainCategories === undefined) return;
 
   return (
     <div className="filter-container sticky top-20 flex h-16 items-center border border-gray-lighter	bg-white	shadow-sm">

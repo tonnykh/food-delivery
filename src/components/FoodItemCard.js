@@ -26,6 +26,8 @@ const FoodItemCard = ({
 
   const dispatch = useDispatch();
   const addOneWithRestaurant = (foodItem, restaurant) => {
+    console.log(foodItem, 'FOOD ITEM DISPATCH');
+
     dispatch(addItem(foodItem));
     dispatch(addRestaurant(restaurant));
   };
@@ -46,8 +48,6 @@ const FoodItemCard = ({
     (itemWithQuantity) => itemWithQuantity.item.id === id
   )?.quantity;
 
-
-
   return (
     <div
       className="restaurant-menu-item flex justify-between border-b border-gray-lighter pt-12 pb-8"
@@ -61,11 +61,11 @@ const FoodItemCard = ({
             {isBestSeller ? 'Bestseller' : null}
           </span>
         </div>
-        <h3 className='font-bold '>{name}</h3>
+        <h3 className="font-bold ">{name}</h3>
         {price == 0 ? (
           <p className=" leading-loose">Rs {defaultPrice / 100}</p>
         ) : (
-            <p className='text-sm font-normal'>Rs {price / 100}</p>
+          <p className="text-sm font-normal">Rs {price / 100}</p>
         )}
 
         <div className="description pt-3 text-xs font-normal text-gray-light">

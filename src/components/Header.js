@@ -16,7 +16,7 @@ function Title() {
 
 function Header() {
   const [searchText, setSearchText] = useState('');
-  const [toggleLocationSideBar, setToggleLocationSideBar] = useState(true);
+  const [toggleLocationSideBar, setToggleLocationSideBar] = useState(false);
 
   const locationAddress = useSelector(
     (store) => store.location.locationAddress

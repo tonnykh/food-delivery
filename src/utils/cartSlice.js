@@ -19,7 +19,10 @@ const cartSlice = createSlice({
       if (!itemFound) {
         state.items.push({ item: action.payload, quantity: 1 });
       }
-      state.totalCost += action.payload.price;
+      state.totalCost +=
+        action.payload.price === 0
+          ? action.payload.defaultPrice
+          : action.payload.price;
     },
 
     removeItem: (state, action) => {
@@ -28,7 +31,10 @@ const cartSlice = createSlice({
           itemWithQuantity.quantity === 1
             ? state.items.splice(index, 1)
             : (itemWithQuantity.quantity -= 1);
-          state.totalCost -= action.payload.price / 100;
+          state.totalCost -=
+            action.payload.price === 0
+              ? action.payload.defaultPrice
+              : action.payload.price;
         }
       });
     },

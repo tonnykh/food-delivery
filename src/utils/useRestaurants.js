@@ -7,21 +7,29 @@ const useRestaurants = () => {
   const [carousels, setCarousels] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [mainCategories, setMainCategories] = useState([]);
-  
 
-  // const latitude = useSelector(store, )
+  const latitude = useSelector((store) => store.location.coordinates.latitude);
+  const longitude = useSelector(
+    (store) => store.location.coordinates.longitude
+  );
+
+  console.log(latitude, longitude, 'DATA API RESTAURANT LAT LONG');
 
   async function fetchRestaurant() {
+    if (latitude === undefined && longitude === undefined) return;
+
     const response = await fetch(
       FETCH_RESTAURANTS_URL +
-        'lat=' +
+        PAGE_TYPE +
+        '&lat=' +
         latitude +
         '&lng=' +
-        longitude +
-        PAGE_TYPE
+        longitude
     );
 
     const { data } = await response.json();
+    console.log(response, data, 'DATA API RESTAURANT');
+
     // console.log(json.data.cards, '-----DATA CALL 1st');
     const restaurantData = data?.cards[2]?.data?.data?.cards;
     const carouselsData = data?.cards[0]?.data?.data?.cards;
@@ -31,12 +39,13 @@ const useRestaurants = () => {
     setIsLoading(false);
     setMainCategories(mainCategories);
   }
+  
 
   useEffect(() => {
     fetchRestaurant();
-  }, []);
+  }, [latitude, longitude]);
 
-  console.log(mainCategories, 'SORTS DATA');
+  console.log(carousels, 'CarouSELS DATA');
   return [restaurants, carousels, isLoading, mainCategories];
 };
 

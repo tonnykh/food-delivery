@@ -9,7 +9,7 @@ const useSearchFilter = () => {
   const [restaurants] = useRestaurants();
 
   const { sortid } = useParams();
-  // const restaurantsChange = useRestaurantsChange(sortid);
+  const restaurantsChange = useRestaurantsChange(sortid);
 
   // const filterData = (searchTxt, restaurants) => {
   //   return restaurants.filter((restaurant) =>

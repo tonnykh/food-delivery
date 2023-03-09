@@ -16,9 +16,9 @@ const MenuRightCart = () => {
 
   const totalFoodCost = useSelector((store) => store.cart.totalCost);
 
-  console.log(totalFoodCost, 'TOTAL COST');
-
   const foodItems = useSelector((store) => store.cart.items);
+
+  console.log(cartTotalQuantity, 'CART QUANTITY');
 
   return (
     <div className="menu-right-cart w-80 pl-3 pr-3 pt-20 text-gray-light">

@@ -1,32 +1,41 @@
 import { useEffect, useState } from 'react';
 import { FETCH_RESTAURANTS_URL, PAGE_TYPE } from '../constants';
-// import { FETCH_RESTAURANTS_HIGH_TO_LOW_COST_URL } from '../constants';
+import { useSelector } from 'react-redux';
 
 const useRestaurantsChange = (key) => {
   console.log(key, 'SORT ID USE CHANGE________');
+
+  const latitude = useSelector((store) => store.location.coordinates.latitude);
+  const longitude = useSelector(
+    (store) => store.location.coordinates.longitude
+  );
+  console.log(latitude, 'LAT ----0-');
 
   const [restaurantsData, setRestaurantsData] = useState([]);
 
   async function fetchRestaurantChange() {
     const response = await fetch(
-      FETCH_RESTAURANTS_URL + 'sortBy=' + key + '&' + PAGE_TYPE
+      FETCH_RESTAURANTS_URL +
+        PAGE_TYPE +
+        '&lat=' +
+        latitude +
+        '&lng=' +
+        longitude +
+        '&sortBy=' +
+        key
     );
     const { data } = await response.json();
-    console.log(data, 'CHANGE DATA');
+    console.log(response, data, 'CHANGE DATA');
     const restaurantsData = data?.cards[0]?.data?.data?.cards;
     setRestaurantsData(restaurantsData);
   }
 
-  // async function fetchRestaurant() {
-  //   const response = await fetch(FETCH_RESTAURANTS_URL + PAGE_TYPE);
-  //   const { data } = await response.json();
-  //   const restaurantData = data?.cards[2]?.data?.data?.cards;
-  //   setRestaurantsData(restaurantData);
-  // }
 
   useEffect(() => {
     fetchRestaurantChange();
-  }, [key]);
+        console.log('CHANGE DATA FETCH');
+
+  }, [key, latitude, longitude]);
 
   return restaurantsData;
 };

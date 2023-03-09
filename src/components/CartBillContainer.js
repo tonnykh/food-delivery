@@ -9,7 +9,7 @@ const CartTotalAmount = () => {
   return (
     <div className="flex h-14 justify-between px-8 pt-4 text-sm font-bold shadow-[0px_-1px_4px_-3px_#33333375]">
       <div>TO PAY</div>
-      <div>Rs {(totalFoodCost + 60) / 100}</div>
+      <div>Rs {(totalFoodCost / 100) + 60}</div>
     </div>
   );
 };
@@ -22,7 +22,7 @@ const CartBillDetails = () => {
       <div className="mb-2 text-sm font-bold text-gray-dark">Bill Details</div>
       <div className="my-3 flex justify-between text-xs text-gray-light">
         <span>Item Total</span>
-        <span>Rs {totalFoodCost}</span>
+        <span>Rs {totalFoodCost / 100}</span>
       </div>
       <div className="my-3 flex justify-between text-xs text-gray-light">
         <div>Delivery Fee | 1.5 kms</div>

@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  addLocationAddress,
-  addLatitude,
-  addLongitude,
-} from '../utils/locationSlice';
+import { addLocationAddress, addLongitude, addLatitude } from './locationSlice';
 
-const CurrentLocationButton = ({ setToggle }) => {
+const useAddress = () => {
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
-  const [intervalId, setIntervalId] = useState(null);
-
   const dispatch = useDispatch();
 
   function getLocation() {
@@ -20,7 +14,6 @@ const CurrentLocationButton = ({ setToggle }) => {
       error = 'Geolocation is not supported by this browser.';
     }
   }
-    getLocation();
 
   function showPosition(position) {
     setLatitude(position.coords.latitude);
@@ -41,27 +34,9 @@ const CurrentLocationButton = ({ setToggle }) => {
   useEffect(() => {
     latitude && getAddress(latitude, longitude);
     console.log('effect CALLLLALALALAL');
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [latitude, intervalId]);
+  }, [latitude]);
 
-  return (
-    <button
-      className="my-4 w-full border p-2"
-      onClick={() => {
-        getLocation();
-        setIntervalId(
-          setInterval(() => {
-            console.log('CALLLLALALALAL');
-            setToggle();
-          }, 4000)
-        );
-      }}
-    >
-      Get current location
-    </button>
-  );
+  getLocation();
 };
 
-export default CurrentLocationButton;
+export default useAddress();
