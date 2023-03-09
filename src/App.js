@@ -10,8 +10,6 @@ import RestaurantMenu from './components/RestaurantMenu';
 import Login from './components/Login';
 import Help from './components/Help';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import CartProvider from './CartContext';
-import UserContext from './utils/UserContext';
 import Test from './components/Test';
 import RestaurantList from './components/RestaurantList';
 import { Provider } from 'react-redux';
@@ -19,24 +17,14 @@ import store from './utils/store';
 import Cart from './components/Cart';
 
 const App = () => {
-  const [user, setUser] = useState({
-    name: 'Tonny',
-    email: 'tonny@gmail.com',
-  });
-
   return (
-    <Provider store={store}>
-      <UserContext.Provider
-        value={{
-          user: user,
-          setUser: setUser,
-        }}
-      >
+    <>
+      <Provider store={store}>
         <Header />
         <Outlet />
-        <Footer />
-      </UserContext.Provider>
-    </Provider>
+      </Provider>
+      {/* <Footer /> */}
+    </>
   );
 };
 
@@ -79,7 +67,7 @@ const appRouter = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart />,
-      }
+      },
     ],
   },
 ]);

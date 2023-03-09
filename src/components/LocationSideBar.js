@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useClickOutside from '../utils/useClickOutside';
 import LocationSuggestionsDropdown from './LocationSuggestionsDropdown';
-import CurrentLocationButton from './CurrentLocationButton';
+import { RxCross1 } from 'react-icons/rx';
 
 const InputLocation = ({ searchText, handleSearch }) => {
   return (
     <input
       type="text"
-      className="w-full border bg-white  px-2 py-1"
+      className="w-full border border-gray-lighter bg-white px-3 py-2 shadow-lg"
       value={searchText}
       placeholder="Search Location.."
       onChange={(e) => {
@@ -53,7 +53,7 @@ const LocationSideBar = ({ setToggle }) => {
         ref={locationSideBarRef}
       >
         <button className="pb-4" onClick={() => setToggle()}>
-          x
+          <RxCross1 />
         </button>
         <InputLocation
           handleSearch={(e) => {
@@ -61,7 +61,6 @@ const LocationSideBar = ({ setToggle }) => {
           }}
           searchText={searchText}
         />
-        {!showSuggestions && <CurrentLocationButton setToggle={setToggle} />}
         {showSuggestions && (
           <LocationSuggestionsDropdown
             suggestions={suggestions}

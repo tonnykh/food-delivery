@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
-import UserContext from '../utils/UserContext';
+import React from 'react';
+
 
 const Footer = () => {
-  const { user } = useContext(UserContext);
   return (
     <footer data-testid='footer-content'>
-      Footer - {user.name} - {user.email}
+      Footer
     </footer>
   );
 };
