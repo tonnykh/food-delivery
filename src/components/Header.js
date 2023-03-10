@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Search from './Search';
 import LocationSideBar from './LocationSideBar';
 import { AiOutlineDown, AiFillGithub } from 'react-icons/ai';
+import { GITHUB_LINK } from '../constants';
 
 function Logo() {
   return (
@@ -58,8 +59,8 @@ function Header() {
 
         <ul className="navbar flex gap-16 text-sm font-bold text-gray-dark">
           <li>
-            <Link to={'/'} target="_blank" rel="noopener noreferrer">
-              <div className=" group relative">
+            <Link to={GITHUB_LINK} target="_blank" rel="noopener noreferrer">
+              <div className=" group relative hover:text-orange">
                 <AiFillGithub className="hover:text-gray-700 cursor-pointer text-3xl transition hover:rotate-[360deg]  hover:scale-150 hover:duration-500 hover:ease-in" />
                 <span className="bg-gray-600 invisible absolute -right-1/2 -bottom-9 block whitespace-nowrap rounded-md p-2 text-xs text-white opacity-80 group-hover:visible">
                   Created by Tonny kh © 2023
@@ -69,10 +70,10 @@ function Header() {
           </li>
           <li className="flex items-center gap-2">
             <Link to="/cart">
-              <button data-testid="cart" className="text-base">
+              <button data-testid="cart" className="text-base hover:text-orange">
                 <span className="text-green">
                   {cartTotalQuantity > 0 && cartTotalQuantity}
-                </span>
+                </span>{' '}
                 Cart
               </button>
             </Link>

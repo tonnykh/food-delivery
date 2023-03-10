@@ -35,3 +35,5 @@ export const EMPTY_CART_IMG_COLOR_CDN_URL =
 
 export const IMG_LOGIN_URL =
   'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_147,h_140/Image-login_btpq7r';
+
+export const GITHUB_LINK = 'https://github.com/tonnykh/food-delivery';
