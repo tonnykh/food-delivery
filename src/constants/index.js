@@ -8,8 +8,10 @@
 // };
 //  'sortBy=COST_FOR_TWO_H2L&';
 
+const CORS_PROXY_URL = '/api/';
+
 export const FETCH_RESTAURANTS_URL =
-  'https://www.swiggy.com/dapi/restaurants/list/v5?';
+  CORS_PROXY_URL + 'dapi/restaurants/list/v5?';
 
 // lat = 28.5620966 & lng=77.2139292 & ';
 
@@ -25,7 +27,7 @@ export const MENU_IMG_CDN_URL =
   'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fill/';
 
 export const FETCH_MENU_URL =
-  'https://www.swiggy.com/dapi/menu/v4/full?lat=28.5620966&lng=77.2139292&menuId=';
+  CORS_PROXY_URL + 'dapi/menu/v4/full?lat=28.5620966&lng=77.2139292&menuId=';
 
 export const EMPTY_CART_IMG_CDN_URL =
   'https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_480/Cart_empty_-_menu_2x_ejjkf2';
